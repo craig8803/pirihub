@@ -133,9 +133,15 @@ function renderBookingCalendars() {
             const dateString = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
             let dayClass = 'calendar-cell calendar-day';
 
-            // Check if date is blocked from Airbnb
-            if (isDateBlocked(dateString, houseId)) {
+            // Check if date is blocked and from which source
+            const blockInfo = getBlockedDateSource(dateString, houseId);
+            if (blockInfo.isBlocked) {
                 dayClass += ' blocked';
+                if (blockInfo.source === 'airbnb') {
+                    dayClass += ' blocked-airbnb';
+                } else if (blockInfo.source === 'booking') {
+                    dayClass += ' blocked-booking';
+                }
             }
 
             if (selectedStart === dateString) {
@@ -201,19 +207,30 @@ function renderBookingCalendars() {
     });
 }
 
-function isDateBlocked(dateString, houseId) {
+function getBlockedDateSource(dateString, houseId) {
     if (!houseId || !blockedDates[houseId]) {
-        return false;
+        return { isBlocked: false, source: null };
     }
 
     const dateObj = new Date(dateString);
     const ranges = blockedDates[houseId];
 
-    return ranges.some(range => {
+    for (const range of ranges) {
         const rangeStart = new Date(range.start);
         const rangeEnd = new Date(range.end);
-        return dateObj >= rangeStart && dateObj < rangeEnd;
-    });
+        if (dateObj >= rangeStart && dateObj < rangeEnd) {
+            // Determine source from title
+            const source = range.title.toLowerCase().includes('airbnb') ? 'airbnb' : 
+                          range.title.toLowerCase().includes('booking') ? 'booking' : null;
+            return { isBlocked: true, source: source };
+        }
+    }
+
+    return { isBlocked: false, source: null };
+}
+
+function isDateBlocked(dateString, houseId) {
+    return getBlockedDateSource(dateString, houseId).isBlocked;
 }
 
 function updateBookingSelectionDisplay(calendar) {
