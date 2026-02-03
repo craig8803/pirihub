@@ -13,7 +13,7 @@ import requests
 # House configurations - Airbnb
 AIRBNB_HOUSES = {
     'casa-matutina': os.getenv('AIRBNB_CASA_MATUTINA'),
-    'casa-atelier': os.getenv('AIRBNB_CASA_ATELIER'),
+    'atelier': os.getenv('AIRBNB_ATELIER'),
     'casa-sol': os.getenv('AIRBNB_CASA_SOL'),
     'mini-casa': os.getenv('AIRBNB_MINI_CASA'),
 }
@@ -21,7 +21,7 @@ AIRBNB_HOUSES = {
 # House configurations - Booking.com
 BOOKING_HOUSES = {
     'casa-matutina': os.getenv('BOOKING_CASA_MATUTINA'),
-    'casa-atelier': os.getenv('BOOKING_CASA_ATELIER'),
+    'atelier': os.getenv('BOOKING_ATELIER'),
     'casa-sol': os.getenv('BOOKING_CASA_SOL'),
     'mini-casa': os.getenv('BOOKING_MINI_CASA'),
 }
@@ -84,7 +84,7 @@ def sync_all_calendars():
     """Sync all house calendars from all sources and save to JSON."""
     all_blocked = {}
     
-    for house_id in ['casa-matutina', 'casa-atelier', 'casa-sol', 'mini-casa']:
+    for house_id in ['casa-matutina', 'atelier', 'casa-sol', 'mini-casa']:
         print(f"\nSyncing {house_id}...")
         
         # Fetch from Airbnb

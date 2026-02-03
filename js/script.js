@@ -6,9 +6,9 @@ const houses = {
         id: 'casa-matutina'
     },
     house2: {
-        name: "Casa Atelier",
+        name: "Atelier",
         description: "An artistic space for creative minds, with studio areas and inspiration.",
-        id: 'casa-atelier'
+        id: 'atelier'
     },
     house3: {
         name: "Casa Sol",
