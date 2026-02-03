@@ -189,6 +189,11 @@ footer {
     flex-wrap: wrap;
 }
 
+.min-stay-warning {
+    color: #d63031;
+    font-weight: 700;
+}
+
 .booking-details {
     margin-top: 1rem;
     display: none;
