@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Sync Airbnb calendar to PiriHub blocked dates.
+Sync Airbnb and Booking.com calendars to PiriHub blocked dates.
 Reads iCal feeds and generates JSON with blocked date ranges.
 """
 
@@ -10,16 +10,24 @@ from datetime import datetime
 from icalendar import Calendar
 import requests
 
-# House configurations
-HOUSES = {
+# House configurations - Airbnb
+AIRBNB_HOUSES = {
     'casa-matutina': os.getenv('AIRBNB_CASA_MATUTINA'),
     'casa-atelier': os.getenv('AIRBNB_CASA_ATELIER'),
     'casa-do-vale': os.getenv('AIRBNB_CASA_DO_VALE'),
     'casa-do-rio': os.getenv('AIRBNB_CASA_DO_RIO'),
 }
 
-def fetch_airbnb_calendar(ical_url):
-    """Fetch and parse Airbnb iCal feed."""
+# House configurations - Booking.com
+BOOKING_HOUSES = {
+    'casa-matutina': os.getenv('BOOKING_CASA_MATUTINA'),
+    'casa-atelier': os.getenv('BOOKING_CASA_ATELIER'),
+    'casa-do-vale': os.getenv('BOOKING_CASA_DO_VALE'),
+    'casa-do-rio': os.getenv('BOOKING_CASA_DO_RIO'),
+}
+
+def fetch_calendar(ical_url, source_name):
+    """Fetch and parse iCal feed."""
     if not ical_url:
         return []
     
@@ -27,12 +35,14 @@ def fetch_airbnb_calendar(ical_url):
         response = requests.get(ical_url, timeout=10)
         response.raise_for_status()
         cal = Calendar.from_ical(response.content)
-        return cal.walk('VEVENT')
+        events = cal.walk('VEVENT')
+        print(f"  Fetched {len(events)} events from {source_name}")
+        return events
     except Exception as e:
-        print(f"Error fetching calendar: {e}")
+        print(f"  Error fetching {source_name} calendar: {e}")
         return []
 
-def extract_blocked_dates(events):
+def extract_blocked_dates(events, source_name):
     """Extract blocked date ranges from calendar events."""
     blocked = []
     
@@ -55,31 +65,43 @@ def extract_blocked_dates(events):
                 blocked.append({
                     'start': start_date.isoformat(),
                     'end': end_date.isoformat(),
-                    'title': summary[:50]  # Limit title length
+                    'title': f"{source_name}: {summary[:30]}"
                 })
         except Exception as e:
-            print(f"Error processing event: {e}")
+            print(f"  Error processing event: {e}")
             continue
     
     return blocked
 
+def merge_blocked_dates(airbnb_dates, booking_dates):
+    """Merge blocked dates from multiple sources."""
+    all_dates = airbnb_dates + booking_dates
+    # Sort by start date
+    all_dates.sort(key=lambda x: x['start'])
+    return all_dates
+
 def sync_all_calendars():
-    """Sync all house calendars and save to JSON."""
+    """Sync all house calendars from all sources and save to JSON."""
     all_blocked = {}
     
-    for house_id, ical_url in HOUSES.items():
-        print(f"Syncing {house_id}...")
+    for house_id in ['casa-matutina', 'casa-atelier', 'casa-do-vale', 'casa-do-rio']:
+        print(f"\nSyncing {house_id}...")
         
-        if not ical_url:
-            print(f"  No calendar URL for {house_id}")
-            all_blocked[house_id] = []
-            continue
+        # Fetch from Airbnb
+        airbnb_url = AIRBNB_HOUSES.get(house_id)
+        airbnb_events = fetch_calendar(airbnb_url, 'Airbnb') if airbnb_url else []
+        airbnb_blocked = extract_blocked_dates(airbnb_events, 'Airbnb')
         
-        events = fetch_airbnb_calendar(ical_url)
-        blocked_dates = extract_blocked_dates(events)
-        all_blocked[house_id] = blocked_dates
+        # Fetch from Booking.com
+        booking_url = BOOKING_HOUSES.get(house_id)
+        booking_events = fetch_calendar(booking_url, 'Booking.com') if booking_url else []
+        booking_blocked = extract_blocked_dates(booking_events, 'Booking.com')
         
-        print(f"  Found {len(blocked_dates)} blocked date ranges")
+        # Merge all blocked dates
+        merged_blocked = merge_blocked_dates(airbnb_blocked, booking_blocked)
+        all_blocked[house_id] = merged_blocked
+        
+        print(f"  Total blocked ranges: {len(merged_blocked)} (Airbnb: {len(airbnb_blocked)}, Booking: {len(booking_blocked)})")
     
     # Save to JSON
     output_file = 'blocked_dates.json'
@@ -87,7 +109,6 @@ def sync_all_calendars():
         json.dump(all_blocked, f, indent=2)
     
     print(f"\nSaved blocked dates to {output_file}")
-    print(json.dumps(all_blocked, indent=2))
 
 if __name__ == '__main__':
     sync_all_calendars()

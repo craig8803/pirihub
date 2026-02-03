@@ -32,6 +32,10 @@ jobs:
           AIRBNB_CASA_ATELIER: ${{ secrets.AIRBNB_CASA_ATELIER }}
           AIRBNB_CASA_DO_VALE: ${{ secrets.AIRBNB_CASA_DO_VALE }}
           AIRBNB_CASA_DO_RIO: ${{ secrets.AIRBNB_CASA_DO_RIO }}
+          BOOKING_CASA_MATUTINA: ${{ secrets.BOOKING_CASA_MATUTINA }}
+          BOOKING_CASA_ATELIER: ${{ secrets.BOOKING_CASA_ATELIER }}
+          BOOKING_CASA_DO_VALE: ${{ secrets.BOOKING_CASA_DO_VALE }}
+          BOOKING_CASA_DO_RIO: ${{ secrets.BOOKING_CASA_DO_RIO }}
       
       - name: Commit and push changes
         run: |
