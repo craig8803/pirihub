@@ -248,5 +248,74 @@ def get_booking(booking_id):
             return jsonify(booking)
     return jsonify({'error': 'Booking not found'}), 404
 
+@app.route('/api/submit-review', methods=['POST'])
+def submit_review():
+    """Handle review submission with booking verification."""
+    try:
+        data = request.json
+        
+        # Validate required fields
+        required_fields = ['bookingId', 'reviewerName', 'rating', 'comment', 'house']
+        if not all(field in data for field in required_fields):
+            return jsonify({'error': 'Missing required fields'}), 400
+        
+        # Verify booking exists
+        bookings = load_bookings()
+        booking = None
+        for b in bookings['bookings']:
+            if b['id'] == data['bookingId']:
+                booking = b
+                break
+        
+        if not booking:
+            return jsonify({'error': 'Invalid booking ID'}), 404
+        
+        # Verify booking is for the correct house
+        if booking['house'] != data['house']:
+            return jsonify({'error': 'Booking ID does not match this property'}), 400
+        
+        # Check if booking has already been used for a review
+        if booking.get('reviewed'):
+            return jsonify({'error': 'A review has already been submitted for this booking'}), 400
+        
+        # Create review object
+        review = {
+            'id': str(uuid.uuid4()),
+            'bookingId': data['bookingId'],
+            'house': data['house'],
+            'reviewerName': data['reviewerName'],
+            'rating': int(data['rating']),
+            'comment': data['comment'],
+            'createdAt': datetime.now().isoformat(),
+            'verified': True  # Verified through booking ID
+        }
+        
+        # Save review (you'll need to create reviews.json similar to bookings.json)
+        reviews_file = 'reviews.json'
+        if os.path.exists(reviews_file):
+            with open(reviews_file, 'r') as f:
+                reviews_data = json.load(f)
+        else:
+            reviews_data = {'reviews': []}
+        
+        reviews_data['reviews'].append(review)
+        
+        with open(reviews_file, 'w') as f:
+            json.dump(reviews_data, f, indent=2)
+        
+        # Mark booking as reviewed
+        booking['reviewed'] = True
+        save_bookings(bookings)
+        
+        return jsonify({
+            'success': True,
+            'message': 'Review submitted successfully',
+            'reviewId': review['id']
+        }), 201
+        
+    except Exception as e:
+        print(f"Error submitting review: {e}")
+        return jsonify({'error': 'Failed to submit review'}), 500
+
 if __name__ == '__main__':
     app.run(debug=True, port=5001)

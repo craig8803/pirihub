@@ -386,50 +386,70 @@ function calculateNights(startDate, endDate) {
 function attachReviewFormListeners() {
     const reviewForms = document.querySelectorAll('.review-form');
     reviewForms.forEach((form) => {
-        form.addEventListener('submit', (event) => {
+        form.addEventListener('submit', async (event) => {
             event.preventDefault();
 
+            const bookingId = form.querySelector('input[name="bookingId"]')?.value.trim() || '';
             const name = form.querySelector('input[name="reviewerName"]').value.trim();
             const rating = form.querySelector('select[name="reviewerRating"]').value;
             const comment = form.querySelector('textarea[name="reviewerComment"]').value.trim();
 
-            if (!name || !rating || !comment) {
-                alert('Please fill in all review fields.');
+            if (!bookingId || !name || !rating || !comment) {
+                alert('Please fill in all review fields including your booking ID.');
                 return;
             }
 
-            const stars = '★'.repeat(rating) + '☆'.repeat(5 - rating);
-            const starsHollow = '☆'.repeat(5 - rating);
+            // Get house ID from the page
+            const houseId = getCurrentHouseId();
+            if (!houseId) {
+                alert('Unable to determine property. Please try again.');
+                return;
+            }
 
-            // Get house name from the page
-            const pageTitle = document.querySelector('h1')?.textContent || 'PiriHub House';
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/submit-review`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        bookingId: bookingId,
+                        reviewerName: name,
+                        rating: parseInt(rating),
+                        comment: comment,
+                        house: houseId
+                    })
+                });
 
-            const reviewHtml = `<div class="review">
-    <div class="review-header">
-        <strong>${name}</strong>
-        <div class="review-rating">${stars}</div>
-    </div>
-    <p>"${comment}"</p>
-</div>`;
+                const result = await response.json();
 
-            const subject = encodeURIComponent(`New Review Submission - ${pageTitle}`);
-            const body = encodeURIComponent(
-                `New review submission for ${pageTitle}\n\n` +
-                `Reviewer: ${name}\n` +
-                `Rating: ${rating}/5 stars\n` +
-                `Comment: "${comment}"\n\n` +
-                `--- COPY BELOW TO ADD REVIEW ---\n` +
-                reviewHtml + `\n` +
-                `--- END ---\n\n` +
-                `Instructions: Copy the HTML snippet above and paste it into the reviews section of ${pageTitle.toLowerCase().replace(/\s+/g, '-')}.html`
-            );
+                if (!response.ok) {
+                    alert(`Error: ${result.error || 'Failed to submit review'}`);
+                    return;
+                }
 
-            window.location.href = `mailto:craig_halliday@mac.com?subject=${subject}&body=${body}`;
-            
-            form.reset();
-            alert('Thank you! Your review will be added after verification.');
+                alert('Thank you! Your verified review has been submitted successfully.');
+                form.reset();
+                
+                // Optionally reload reviews section to show new review
+                // loadReviews(houseId);
+                
+            } catch (error) {
+                console.error('Error submitting review:', error);
+                alert('Error submitting review. Please try again.');
+            }
         });
     });
+}
+
+// Helper function to get current house ID from page
+function getCurrentHouseId() {
+    const h1 = document.querySelector('h1')?.textContent.toLowerCase() || '';
+    if (h1.includes('casa matutina')) return 'casa-matutina';
+    if (h1.includes('atelier')) return 'atelier';
+    if (h1.includes('casa sol')) return 'casa-sol';
+    if (h1.includes('mini casa')) return 'mini-casa';
+    return null;
 }
 
 function getBookingFormValues(detailsForm) {
