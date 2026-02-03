@@ -16,7 +16,40 @@
       "title": "Airbnb: Airbnb (Not available)"
     }
   ],
-  "atelier": [],
-  "casa-sol": [],
-  "mini-casa": []
+  "atelier": [
+    {
+      "start": "2026-02-03",
+      "end": "2026-02-04",
+      "title": "Airbnb: Airbnb (Not available)"
+    },
+    {
+      "start": "2026-05-04",
+      "end": "2027-02-04",
+      "title": "Airbnb: Airbnb (Not available)"
+    }
+  ],
+  "casa-sol": [
+    {
+      "start": "2026-02-01",
+      "end": "2027-02-04",
+      "title": "Airbnb: Airbnb (Not available)"
+    }
+  ],
+  "mini-casa": [
+    {
+      "start": "2026-02-06",
+      "end": "2026-02-08",
+      "title": "Booking.com: CLOSED - Not available"
+    },
+    {
+      "start": "2026-02-14",
+      "end": "2026-02-18",
+      "title": "Airbnb: Reserved"
+    },
+    {
+      "start": "2026-12-01",
+      "end": "2027-02-04",
+      "title": "Airbnb: Airbnb (Not available)"
+    }
+  ]
 }
