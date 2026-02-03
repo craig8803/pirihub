@@ -1,5 +1,11 @@
 {
-  "casa-matutina": [],
+  "casa-matutina": [
+    {
+      "start": "2026-05-04",
+      "end": "2027-02-04",
+      "title": "Airbnb (Not available)"
+    }
+  ],
   "casa-atelier": [],
   "casa-do-vale": [],
   "casa-do-rio": []
