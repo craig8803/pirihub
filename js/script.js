@@ -1,3 +1,6 @@
+// Configuration
+const API_BASE_URL = 'http://localhost:5000';
+
 // Houses data
 const houses = {
     house1: {
@@ -327,7 +330,7 @@ function updateBookingSelectionDisplay(calendar) {
                     bookingButton.disabled = true;
                     bookingButton.textContent = 'Submitting...';
 
-                    const response = await fetch('/api/submit-booking', {
+                    const response = await fetch(`${API_BASE_URL}/api/submit-booking`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
