@@ -1,0 +1,446 @@
+// Houses data
+const houses = {
+    house1: {
+        name: "Casa Matutina",
+        description: "A charming house in the morning light, perfect for small groups.",
+        id: 'casa-matutina'
+    },
+    house2: {
+        name: "Casa Atelier",
+        description: "An artistic space for creative minds, with studio areas and inspiration.",
+        id: 'casa-atelier'
+    },
+    house3: {
+        name: "Casa do Vale",
+        description: "Located in a lush valley, ideal for nature lovers.",
+        id: 'casa-do-vale'
+    },
+    house4: {
+        name: "Casa do Rio",
+        description: "By the river, with access to water activities and relaxation.",
+        id: 'casa-do-rio'
+    }
+};
+
+let blockedDates = {};
+
+// Function to handle house selection
+function selectHouse() {
+    const select = document.getElementById('house-select');
+    const infoDiv = document.getElementById('house-info');
+    const selectedValue = select.value;
+
+    if (selectedValue && houses[selectedValue]) {
+        const house = houses[selectedValue];
+        infoDiv.innerHTML = `
+            <h2>${house.name}</h2>
+            <p>${house.description}</p>
+        `;
+    } else {
+        infoDiv.innerHTML = '';
+    }
+}
+
+// Function to get URL parameter
+function getUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    const results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+}
+
+// On page load, check for house parameter
+window.addEventListener('DOMContentLoaded', function() {
+    const houseParam = getUrlParameter('house');
+    if (houseParam && document.getElementById('house-select')) {
+        const select = document.getElementById('house-select');
+        select.value = houseParam;
+        selectHouse();
+    }
+
+    // Load blocked dates from JSON
+    fetch('blocked_dates.json')
+        .then(response => response.json())
+        .then(data => {
+            blockedDates = data;
+            renderBookingCalendars();
+        })
+        .catch(error => {
+            console.log('Note: blocked_dates.json not found. Using default.');
+            renderBookingCalendars();
+        });
+
+    attachReviewFormListeners();
+});
+
+// Add event listener if on houses page
+if (document.getElementById('house-select')) {
+    document.getElementById('house-select').addEventListener('change', selectHouse);
+}
+
+function renderBookingCalendars() {
+    const calendars = document.querySelectorAll('.booking-calendar');
+    if (!calendars.length) {
+        return;
+    }
+
+    const weekdayLabels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+    calendars.forEach((calendar) => {
+        const offset = parseInt(calendar.dataset.monthOffset || '0', 10);
+        const today = new Date();
+        const baseDate = new Date(today.getFullYear(), today.getMonth() + offset, 1);
+        const year = baseDate.getFullYear();
+        const month = baseDate.getMonth();
+        const firstDay = new Date(year, month, 1);
+        const lastDay = new Date(year, month + 1, 0);
+        const startDayIndex = firstDay.getDay();
+        const totalDays = lastDay.getDate();
+        const monthName = firstDay.toLocaleString('default', { month: 'long' });
+
+        // Get house ID for checking blocked dates
+        const wrapper = calendar.parentElement;
+        let houseId = null;
+        if (wrapper && wrapper.querySelector('.booking-button')) {
+            const houseName = wrapper.querySelector('.booking-button').dataset.house;
+            for (const key in houses) {
+                if (houses[key].name === houseName) {
+                    houseId = houses[key].id;
+                    break;
+                }
+            }
+        }
+
+        let calendarHtml = '<div class="calendar-header">';
+        calendarHtml += '<button class="calendar-nav" data-direction="prev" aria-label="Previous month">&#9664;</button>';
+        calendarHtml += '<span class="calendar-title">' + monthName + ' ' + year + '</span>';
+        calendarHtml += '<button class="calendar-nav" data-direction="next" aria-label="Next month">&#9654;</button>';
+        calendarHtml += '</div>';
+        calendarHtml += '<div class="calendar-grid">';
+
+        weekdayLabels.forEach((label) => {
+            calendarHtml += '<div class="calendar-cell calendar-weekday">' + label + '</div>';
+        });
+
+        for (let i = 0; i < startDayIndex; i += 1) {
+            calendarHtml += '<div class="calendar-cell calendar-empty"></div>';
+        }
+
+        const selectedStart = calendar.dataset.startDate || '';
+        const selectedEnd = calendar.dataset.endDate || '';
+
+        for (let day = 1; day <= totalDays; day += 1) {
+            const dateString = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+            let dayClass = 'calendar-cell calendar-day';
+
+            // Check if date is blocked from Airbnb
+            if (isDateBlocked(dateString, houseId)) {
+                dayClass += ' blocked';
+            }
+
+            if (selectedStart === dateString) {
+                dayClass += ' selected-start';
+            }
+
+            if (selectedEnd === dateString) {
+                dayClass += ' selected-end';
+            }
+
+            if (selectedStart && selectedEnd) {
+                const dayDate = new Date(dateString);
+                const startDate = new Date(selectedStart);
+                const endDate = new Date(selectedEnd);
+                if (dayDate > startDate && dayDate < endDate) {
+                    dayClass += ' selected-range';
+                }
+            }
+
+            calendarHtml += `<div class="${dayClass}" data-date="${dateString}">${day}</div>`;
+        }
+
+        calendarHtml += '</div>';
+        calendar.innerHTML = calendarHtml;
+
+        calendar.querySelectorAll('.calendar-nav').forEach((button) => {
+            button.addEventListener('click', () => {
+                const direction = button.dataset.direction;
+                const currentOffset = parseInt(calendar.dataset.monthOffset || '0', 10);
+                calendar.dataset.monthOffset = direction === 'next' ? currentOffset + 1 : currentOffset - 1;
+                renderBookingCalendars();
+            });
+        });
+
+        calendar.querySelectorAll('.calendar-day').forEach((cell) => {
+            // Prevent interaction with blocked dates
+            if (cell.classList.contains('blocked')) {
+                cell.style.pointerEvents = 'none';
+                return;
+            }
+
+            cell.addEventListener('click', () => {
+                const clickedDate = cell.dataset.date;
+                const currentStart = calendar.dataset.startDate || '';
+                const currentEnd = calendar.dataset.endDate || '';
+
+                if (!currentStart || (currentStart && currentEnd)) {
+                    calendar.dataset.startDate = clickedDate;
+                    calendar.dataset.endDate = '';
+                } else if (currentStart && !currentEnd) {
+                    if (new Date(clickedDate) < new Date(currentStart)) {
+                        calendar.dataset.startDate = clickedDate;
+                    } else {
+                        calendar.dataset.endDate = clickedDate;
+                    }
+                }
+
+                renderBookingCalendars();
+            });
+        });
+
+        updateBookingSelectionDisplay(calendar);
+    });
+}
+
+function isDateBlocked(dateString, houseId) {
+    if (!houseId || !blockedDates[houseId]) {
+        return false;
+    }
+
+    const dateObj = new Date(dateString);
+    const ranges = blockedDates[houseId];
+
+    return ranges.some(range => {
+        const rangeStart = new Date(range.start);
+        const rangeEnd = new Date(range.end);
+        return dateObj >= rangeStart && dateObj < rangeEnd;
+    });
+}
+
+function updateBookingSelectionDisplay(calendar) {
+    const wrapper = calendar.parentElement;
+    if (!wrapper) {
+        return;
+    }
+
+    const startSpan = wrapper.querySelector('.booking-start');
+    const endSpan = wrapper.querySelector('.booking-end');
+    const nightsSpan = wrapper.querySelector('.booking-nights');
+    const bookingButton = wrapper.querySelector('.booking-button');
+    const detailsForm = wrapper.querySelector('.booking-details');
+
+    if (!startSpan || !endSpan) {
+        return;
+    }
+
+    const startDate = calendar.dataset.startDate || '';
+    const endDate = calendar.dataset.endDate || '';
+
+    startSpan.textContent = startDate ? new Date(startDate).toLocaleDateString() : 'Not selected';
+    endSpan.textContent = endDate ? new Date(endDate).toLocaleDateString() : 'Not selected';
+
+    if (nightsSpan) {
+        nightsSpan.textContent = startDate && endDate
+            ? String(calculateNights(startDate, endDate))
+            : '0';
+    }
+
+    if (bookingButton) {
+        const hasRange = Boolean(startDate && endDate);
+        const formValues = getBookingFormValues(detailsForm);
+        const hasRequiredDetails = formValues.isValid;
+        const isEnabled = hasRange && hasRequiredDetails;
+
+        bookingButton.disabled = !isEnabled;
+        bookingButton.setAttribute('aria-disabled', String(!isEnabled));
+
+        // Show/hide form based on date selection
+        if (detailsForm) {
+            if (hasRange) {
+                detailsForm.classList.add('visible');
+            } else {
+                detailsForm.classList.remove('visible');
+            }
+        }
+
+        if (detailsForm && !detailsForm.dataset.listenerAttached) {
+            detailsForm.addEventListener('input', () => {
+                updateBookingSelectionDisplay(calendar);
+            });
+            detailsForm.dataset.listenerAttached = 'true';
+        }
+
+        if (!bookingButton.dataset.listenerAttached) {
+            bookingButton.addEventListener('click', () => {
+                const currentStart = calendar.dataset.startDate || '';
+                const currentEnd = calendar.dataset.endDate || '';
+                const currentValues = getBookingFormValues(detailsForm);
+
+                if (!currentStart || !currentEnd || !currentValues.isValid) {
+                    return;
+                }
+
+                const houseName = bookingButton.dataset.house || 'PiriHub House';
+                const subject = encodeURIComponent(`Booking Request - ${houseName}`);
+                const nights = calculateNights(currentStart, currentEnd);
+                const body = encodeURIComponent(
+                    `Hello PiriHub,\n\nI would like to request a booking for ${houseName}.\n\n` +
+                    `Start date: ${new Date(currentStart).toLocaleDateString()}\n` +
+                    `End date: ${new Date(currentEnd).toLocaleDateString()}\n\n` +
+                    `Nights: ${nights}\n\n` +
+                    `First name: ${currentValues.firstName}\n` +
+                    `Last name: ${currentValues.lastName}\n` +
+                    `Email: ${currentValues.email}\n` +
+                    `Phone: ${currentValues.fullPhone}\n` +
+                    `Guests: ${currentValues.guests}\n` +
+                    `Notes: ${currentValues.notes || 'N/A'}\n\n` +
+                    `Thank you.`
+                );
+
+                window.location.href = `mailto:craig_halliday@mac.com?subject=${subject}&body=${body}`;
+            });
+            bookingButton.dataset.listenerAttached = 'true';
+        }
+    }
+}
+
+function calculateNights(startDate, endDate) {
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+    const diffTime = end - start;
+    const nights = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    return Math.max(nights, 0);
+}
+
+function attachReviewFormListeners() {
+    const reviewForms = document.querySelectorAll('.review-form');
+    reviewForms.forEach((form) => {
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const name = form.querySelector('input[name="reviewerName"]').value.trim();
+            const rating = form.querySelector('select[name="reviewerRating"]').value;
+            const comment = form.querySelector('textarea[name="reviewerComment"]').value.trim();
+
+            if (!name || !rating || !comment) {
+                alert('Please fill in all review fields.');
+                return;
+            }
+
+            const stars = '★'.repeat(rating) + '☆'.repeat(5 - rating);
+            const starsHollow = '☆'.repeat(5 - rating);
+
+            // Get house name from the page
+            const pageTitle = document.querySelector('h1')?.textContent || 'PiriHub House';
+
+            const reviewHtml = `<div class="review">
+    <div class="review-header">
+        <strong>${name}</strong>
+        <div class="review-rating">${stars}</div>
+    </div>
+    <p>"${comment}"</p>
+</div>`;
+
+            const subject = encodeURIComponent(`New Review Submission - ${pageTitle}`);
+            const body = encodeURIComponent(
+                `New review submission for ${pageTitle}\n\n` +
+                `Reviewer: ${name}\n` +
+                `Rating: ${rating}/5 stars\n` +
+                `Comment: "${comment}"\n\n` +
+                `--- COPY BELOW TO ADD REVIEW ---\n` +
+                reviewHtml + `\n` +
+                `--- END ---\n\n` +
+                `Instructions: Copy the HTML snippet above and paste it into the reviews section of ${pageTitle.toLowerCase().replace(/\s+/g, '-')}.html`
+            );
+
+            window.location.href = `mailto:craig_halliday@mac.com?subject=${subject}&body=${body}`;
+            
+            form.reset();
+            alert('Thank you! Your review will be added after verification.');
+        });
+    });
+}
+
+function getBookingFormValues(detailsForm) {
+    if (!detailsForm) {
+        return { isValid: false };
+    }
+
+    const firstName = detailsForm.querySelector('input[name="firstName"]')?.value.trim() || '';
+    const lastName = detailsForm.querySelector('input[name="lastName"]')?.value.trim() || '';
+    const emailInput = detailsForm.querySelector('input[name="email"]');
+    const email = emailInput?.value.trim() || '';
+    const countrySelect = detailsForm.querySelector('select[name="country"]');
+    const countryCode = countrySelect?.value || '';
+    const phoneInput = detailsForm.querySelector('input[name="phone"]');
+    const phone = phoneInput?.value.trim() || '';
+    const guests = detailsForm.querySelector('input[name="guests"]')?.value.trim() || '';
+    const notes = detailsForm.querySelector('textarea[name="notes"]')?.value.trim() || '';
+
+    const emailIsValid = validateEmailFormat(email);
+    const emailErrorSpan = detailsForm.querySelector('.email-error');
+    
+    if (emailInput) {
+        emailInput.setCustomValidity(emailIsValid || !email ? '' : 'Please enter a valid email address.');
+    }
+    
+    // Show/hide email error message
+    if (emailErrorSpan) {
+        if (email && !emailIsValid) {
+            emailErrorSpan.style.display = 'block';
+        } else {
+            emailErrorSpan.style.display = 'none';
+        }
+    }
+
+    // Validate phone doesn't contain country code
+    const phoneIsValid = validatePhoneFormat(phone);
+    const phoneErrorSpan = detailsForm.querySelector('.phone-error');
+    
+    if (phoneInput) {
+        phoneInput.setCustomValidity(phoneIsValid || !phone ? '' : 'Please enter phone without country code.');
+    }
+    
+    // Show/hide phone error message
+    if (phoneErrorSpan) {
+        if (phone && !phoneIsValid) {
+            phoneErrorSpan.style.display = 'block';
+        } else {
+            phoneErrorSpan.style.display = 'none';
+        }
+    }
+
+    const isValid = Boolean(firstName && lastName && email && countryCode && phone && guests && emailIsValid && phoneIsValid);
+    return {
+        firstName,
+        lastName,
+        email,
+        countryCode,
+        phone,
+        fullPhone: countryCode && phone ? `${countryCode} ${phone}` : phone,
+        guests,
+        notes,
+        isValid
+    };
+}
+
+function validateEmailFormat(email) {
+    if (!email) {
+        return false;
+    }
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function validatePhoneFormat(phone) {
+    if (!phone) {
+        return false;
+    }
+    // Check if phone starts with + or 00 (country code prefixes)
+    if (phone.startsWith('+') || phone.startsWith('00')) {
+        return false;
+    }
+    // Check if phone starts with common country codes (1-3 digits followed by space or non-digit)
+    if (/^[0-9]{1,3}[\s\-]/.test(phone)) {
+        return false;
+    }
+    return true;
+}

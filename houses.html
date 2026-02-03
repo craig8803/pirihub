@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Houses - PiriHub</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html"><img src="img/logo.png" alt="PiriHub Logo" style="height: 40px;"></a></li>
+                <li><a href="coliving.html">coliving</a></li>
+                <li class="dropdown">
+                    <a href="houses.html">houses</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="houses.html?house=house1">Casa Matutina</a></li>
+                        <li><a href="houses.html?house=house2">Casa Atelier</a></li>
+                        <li><a href="houses.html?house=house3">Casa do Vale</a></li>
+                        <li><a href="houses.html?house=house4">Casa do Rio</a></li>
+                    </ul>
+                </li>
+                <li><a href="services.html">services</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Our Houses</h1>
+        <p>Select a house to learn more:</p>
+        <select id="house-select">
+            <option value="">Choose a house</option>
+            <option value="house1">Casa Matutina</option>
+            <option value="house2">Casa Atelier</option>
+            <option value="house3">Casa do Vale</option>
+            <option value="house4">Casa do Rio</option>
+        </select>
+        <div id="house-info">
+            <!-- House details will be displayed here -->
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2026 PiriHub. All rights reserved.</p>
+    </footer>
+    <script src="js/script.js"></script>
+</body>
+</html>

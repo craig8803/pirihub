@@ -1,0 +1,379 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    background-color: white;
+    color: black;
+}
+
+header {
+    background-color: white;
+    color: black;
+    padding: 1rem;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+nav > ul > li:nth-child(1) {
+    background-color: transparent;
+}
+
+nav > ul > li:nth-child(2),
+nav > ul > li:nth-child(3),
+nav > ul > li:nth-child(4),
+nav > ul > li:nth-child(5) {
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    background: transparent;
+}
+
+nav a {
+    color: black;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+nav > ul > li:nth-child(2) > a {
+    color: #d63031;
+}
+
+nav > ul > li:nth-child(3) > a {
+    color: #ffb700;
+}
+
+nav > ul > li:nth-child(4) > a {
+    color: #44a08d;
+}
+
+nav > ul > li:nth-child(5) > a {
+    color: #0984e3;
+}
+
+nav a:hover {
+    opacity: 0.9;
+}
+
+h1, h2 {
+    color: black;
+}
+
+main {
+    padding: 2rem;
+    padding-bottom: 150px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+footer {
+    background-color: white;
+    color: black;
+    text-align: center;
+    padding: 1rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+#house-select {
+    margin: 1rem 0;
+    padding: 0.5rem;
+}
+
+#house-info {
+    margin-top: 1rem;
+}
+
+.booking-calendar {
+    max-width: 420px;
+    margin-top: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem;
+    font-weight: 700;
+    background-color: #f5f5f5;
+}
+
+.calendar-title {
+    flex: 1;
+    text-align: center;
+}
+
+.calendar-nav {
+    background: transparent;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+}
+
+.calendar-nav:hover {
+    opacity: 0.7;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.calendar-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #eee;
+    aspect-ratio: 1 / 1;
+    font-size: 0.9rem;
+}
+
+.calendar-weekday {
+    font-weight: 700;
+    background-color: #fafafa;
+}
+
+.calendar-empty {
+    background-color: #fff;
+}
+
+.calendar-day {
+    background-color: #fff;
+}
+
+.calendar-day.blocked {
+    background-color: #f0f0f0;
+    color: #999;
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.calendar-day.selected-start,
+.calendar-day.selected-end {
+    background-color: #ffb700;
+    color: #fff;
+    font-weight: 700;
+}
+
+.calendar-day.selected-range {
+    background-color: #ffe7a3;
+}
+
+.booking-selection {
+    margin-top: 0.75rem;
+    display: flex;
+    gap: 1.5rem;
+    font-weight: 600;
+    flex-wrap: wrap;
+}
+
+.booking-details {
+    margin-top: 1rem;
+    display: none;
+    gap: 0.6rem;
+    max-width: 360px;
+}
+
+.booking-details.visible {
+    display: grid;
+}
+
+.email-error,
+.phone-error {
+    color: #d63031;
+    font-size: 0.85rem;
+    margin-top: -0.3rem;
+    font-weight: 500;
+    display: none;
+}
+
+.booking-details label {
+    font-weight: 600;
+}
+
+.booking-details input,
+.booking-details textarea,
+.booking-details select {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 0.95rem;
+}
+
+.booking-button {
+    margin-top: 1rem;
+    padding: 0.6rem 1rem;
+    background-color: #4ecdc4;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.booking-button:hover {
+    opacity: 0.9;
+}
+
+.booking-button:disabled,
+.booking-button[aria-disabled="true"] {
+    background-color: #b7b7b7;
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+.reviews-section {
+    margin-top: 1rem;
+    display: grid;
+    gap: 1.5rem;
+}
+
+.review-form-section {
+    margin: 1.5rem 0;
+    padding: 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.review-form-section h3 {
+    margin-top: 0;
+    color: #333;
+}
+
+.review-form {
+    display: grid;
+    gap: 0.75rem;
+    max-width: 500px;
+}
+
+.review-form label {
+    font-weight: 600;
+}
+
+.review-form input,
+.review-form select,
+.review-form textarea {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 0.95rem;
+}
+
+.review-submit-btn {
+    margin-top: 0.5rem;
+    padding: 0.6rem 1rem;
+    background-color: #44a08d;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    max-width: 150px;
+}
+
+.review-submit-btn:hover {
+    opacity: 0.9;
+}
+
+.review {
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 1rem;
+    background-color: #fafafa;
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.review-rating {
+    color: #ffb700;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+}
+
+.review p {
+    margin: 0;
+    line-height: 1.5;
+    color: #333;
+}
+
+/* Dropdown menu styles */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+    list-style: none;
+    margin: 0;
+    top: 100%;
+    left: 0;
+}
+
+.dropdown-menu li {
+    padding: 8px 0;
+}
+
+.dropdown-menu a {
+    color: black;
+    text-decoration: none;
+    display: block;
+    font-weight: normal;
+}
+
+.dropdown-menu a:hover {
+    text-decoration: underline;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.image-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.gallery-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.gallery-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
