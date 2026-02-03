@@ -287,7 +287,7 @@ function updateBookingSelectionDisplay(calendar) {
         }
 
         if (!bookingButton.dataset.listenerAttached) {
-            bookingButton.addEventListener('click', () => {
+            bookingButton.addEventListener('click', async () => {
                 const currentStart = calendar.dataset.startDate || '';
                 const currentEnd = calendar.dataset.endDate || '';
                 const currentValues = getBookingFormValues(detailsForm);
@@ -297,32 +297,80 @@ function updateBookingSelectionDisplay(calendar) {
                 }
 
                 const houseName = bookingButton.dataset.house || 'PiriHub House';
-                const subject = encodeURIComponent(`Booking Request - ${houseName}`);
                 const nights = calculateNights(currentStart, currentEnd);
-                const body = encodeURIComponent(
-                    `Hello PiriHub,\n\nI would like to request a booking for ${houseName}.\n\n` +
-                    `Start date: ${new Date(currentStart).toLocaleDateString()}\n` +
-                    `End date: ${new Date(currentEnd).toLocaleDateString()}\n\n` +
-                    `Nights: ${nights}\n\n` +
-                    `First name: ${currentValues.firstName}\n` +
-                    `Last name: ${currentValues.lastName}\n` +
-                    `Email: ${currentValues.email}\n` +
-                    `Phone: ${currentValues.fullPhone}\n` +
-                    `Guests: ${currentValues.guests}\n` +
-                    `Notes: ${currentValues.notes || 'N/A'}\n\n` +
-                    `Thank you.`
-                );
 
-                window.location.href = `mailto:craig_halliday@mac.com?subject=${subject}&body=${body}`;
+                // Find house ID from name
+                let houseId = 'casa-matutina';
+                for (const [id, house] of Object.entries(houses)) {
+                    if (house.name === houseName) {
+                        houseId = house.id;
+                        break;
+                    }
+                }
+
+                // Prepare booking data
+                const bookingData = {
+                    firstName: currentValues.firstName,
+                    lastName: currentValues.lastName,
+                    email: currentValues.email,
+                    country: currentValues.countryCode || 'US',
+                    phone: currentValues.phone,
+                    guests: currentValues.guests,
+                    startDate: currentStart,
+                    endDate: currentEnd,
+                    notes: currentValues.notes,
+                    house: houseId,
+                    currency: getCurrencyFromCountry(currentValues.countryCode)
+                };
+
+                try {
+                    bookingButton.disabled = true;
+                    bookingButton.textContent = 'Submitting...';
+
+                    const response = await fetch('/api/submit-booking', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(bookingData)
+                    });
+
+                    const result = await response.json();
+
+                    if (response.ok) {
+                        // Show success message
+                        alert(`Booking submitted! Booking ID: ${result.bookingId}\n\nYou will receive an email confirmation shortly.`);
+                        // Reset form
+                        detailsForm.reset();
+                        calendar.dataset.startDate = '';
+                        calendar.dataset.endDate = '';
+                        updateBookingUI(wrapper);
+                    } else {
+                        alert(`Error: ${result.error}`);
+                        bookingButton.disabled = false;
+                        bookingButton.textContent = 'Request Booking';
+                    }
+                } catch (error) {
+                    console.error('Booking submission error:', error);
+                    alert('Error submitting booking. Please try again.');
+                    bookingButton.disabled = false;
+                    bookingButton.textContent = 'Request Booking';
+                }
             });
             bookingButton.dataset.listenerAttached = 'true';
         }
     }
 }
 
-function calculateNights(startDate, endDate) {
-    const start = new Date(startDate);
-    const end = new Date(endDate);
+function getCurrencyFromCountry(countryCode) {
+    // Map common country codes to currencies
+    const currencyMap = {
+        'US': 'USD', 'GB': 'GBP', 'EU': 'EUR', 'CA': 'CAD', 'AU': 'AUD',
+        'BR': 'BRL', 'JP': 'JPY', 'CN': 'CNY', 'IN': 'INR', 'MX': 'MXN',
+        'CH': 'CHF', 'SE': 'SEK', 'NO': 'NOK', 'DK': 'DKK', 'NZ': 'NZD',
+    };
+    return currencyMap[countryCode] || 'USD';
+}
     const diffTime = end - start;
     const nights = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
     return Math.max(nights, 0);
