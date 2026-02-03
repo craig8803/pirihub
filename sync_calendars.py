@@ -14,16 +14,16 @@ import requests
 AIRBNB_HOUSES = {
     'casa-matutina': os.getenv('AIRBNB_CASA_MATUTINA'),
     'casa-atelier': os.getenv('AIRBNB_CASA_ATELIER'),
-    'casa-do-vale': os.getenv('AIRBNB_CASA_DO_VALE'),
-    'casa-do-rio': os.getenv('AIRBNB_CASA_DO_RIO'),
+    'casa-sol': os.getenv('AIRBNB_CASA_SOL'),
+    'mini-casa': os.getenv('AIRBNB_MINI_CASA'),
 }
 
 # House configurations - Booking.com
 BOOKING_HOUSES = {
     'casa-matutina': os.getenv('BOOKING_CASA_MATUTINA'),
     'casa-atelier': os.getenv('BOOKING_CASA_ATELIER'),
-    'casa-do-vale': os.getenv('BOOKING_CASA_DO_VALE'),
-    'casa-do-rio': os.getenv('BOOKING_CASA_DO_RIO'),
+    'casa-sol': os.getenv('BOOKING_CASA_SOL'),
+    'mini-casa': os.getenv('BOOKING_MINI_CASA'),
 }
 
 def fetch_calendar(ical_url, source_name):
@@ -84,7 +84,7 @@ def sync_all_calendars():
     """Sync all house calendars from all sources and save to JSON."""
     all_blocked = {}
     
-    for house_id in ['casa-matutina', 'casa-atelier', 'casa-do-vale', 'casa-do-rio']:
+    for house_id in ['casa-matutina', 'casa-atelier', 'casa-sol', 'mini-casa']:
         print(f"\nSyncing {house_id}...")
         
         # Fetch from Airbnb

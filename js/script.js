@@ -11,14 +11,14 @@ const houses = {
         id: 'casa-atelier'
     },
     house3: {
-        name: "Casa do Vale",
+        name: "Casa Sol",
         description: "Located in a lush valley, ideal for nature lovers.",
-        id: 'casa-do-vale'
+        id: 'casa-sol'
     },
     house4: {
-        name: "Casa do Rio",
+        name: "Mini Casa",
         description: "By the river, with access to water activities and relaxation.",
-        id: 'casa-do-rio'
+        id: 'mini-casa'
     }
 };
 
