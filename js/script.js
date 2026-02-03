@@ -260,8 +260,11 @@ function updateBookingSelectionDisplay(calendar) {
 
     if (nightsSpan) {
         const nights = startDate && endDate ? calculateNights(startDate, endDate) : 0;
-        const minStayText = nights > 0 ? ` (Minimum stay is 14 nights)` : '';
-        nightsSpan.textContent = String(nights) + minStayText;
+        if (nights > 0) {
+            nightsSpan.innerHTML = `${nights} <span class="min-stay-warning">(Minimum stay is 14 nights)</span>`;
+        } else {
+            nightsSpan.textContent = '0';
+        }
     }
 
     if (bookingButton) {
