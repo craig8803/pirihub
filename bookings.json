@@ -1,3 +1,31 @@
 {
-  "bookings": []
+  "bookings": [
+    {
+      "id": "18da5ae2-27b0-43ea-b96e-776a259369c4",
+      "createdAt": "2026-02-03T17:18:13.345330",
+      "firstName": "CRAIG",
+      "lastName": "HALLIDAY",
+      "email": "craig_halliday@icloud.com",
+      "country": "+41",
+      "phone": "782342229",
+      "guests": "4",
+      "startDate": "2026-02-25",
+      "endDate": "2026-03-13",
+      "house": "casa-matutina",
+      "nights": 16,
+      "notes": "Cats stink!",
+      "currency": "USD",
+      "status": "pending",
+      "pricing": {
+        "totalUSD": 4800,
+        "depositUSD": 2400.0,
+        "USD": {
+          "total": 4800.0,
+          "deposit": 2400.0,
+          "exchangeRate": 1.0,
+          "rateDate": "2026-02-03T17:18:13.345350"
+        }
+      }
+    }
+  ]
 }
