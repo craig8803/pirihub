@@ -29,13 +29,13 @@ jobs:
         run: python sync_calendars.py
         env:
           AIRBNB_CASA_MATUTINA: ${{ secrets.AIRBNB_CASA_MATUTINA }}
-          AIRBNB_CASA_ATELIER: ${{ secrets.AIRBNB_CASA_ATELIER }}
-          AIRBNB_CASA_DO_VALE: ${{ secrets.AIRBNB_CASA_DO_VALE }}
-          AIRBNB_CASA_DO_RIO: ${{ secrets.AIRBNB_CASA_DO_RIO }}
+          AIRBNB_ATELIER: ${{ secrets.AIRBNB_ATELIER }}
+          AIRBNB_CASA_SOL: ${{ secrets.AIRBNB_CASA_SOL }}
+          AIRBNB_MINI_CASA: ${{ secrets.AIRBNB_MINI_CASA }}
           BOOKING_CASA_MATUTINA: ${{ secrets.BOOKING_CASA_MATUTINA }}
-          BOOKING_CASA_ATELIER: ${{ secrets.BOOKING_CASA_ATELIER }}
-          BOOKING_CASA_DO_VALE: ${{ secrets.BOOKING_CASA_DO_VALE }}
-          BOOKING_CASA_DO_RIO: ${{ secrets.BOOKING_CASA_DO_RIO }}
+          BOOKING_ATELIER: ${{ secrets.BOOKING_ATELIER }}
+          BOOKING_CASA_SOL: ${{ secrets.BOOKING_CASA_SOL }}
+          BOOKING_MINI_CASA: ${{ secrets.BOOKING_MINI_CASA }}
       
       - name: Commit and push changes
         run: |
