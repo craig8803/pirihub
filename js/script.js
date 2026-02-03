@@ -195,6 +195,20 @@ function renderBookingCalendars() {
                     calendar.dataset.startDate = clickedDate;
                     calendar.dataset.endDate = '';
                 } else if (currentStart && !currentEnd) {
+                    // Validate that the selected range doesn't include blocked dates
+                    const startDate = new Date(currentStart);
+                    const endDate = new Date(clickedDate);
+                    
+                    // Ensure start is before end
+                    const rangeStart = startDate < endDate ? startDate : endDate;
+                    const rangeEnd = startDate < endDate ? endDate : startDate;
+                    
+                    // Check if any blocked dates fall within this range
+                    if (hasBlockedDatesInRange(rangeStart, rangeEnd, houseId)) {
+                        alert('Your selected date range includes blocked dates. Please select different dates.');
+                        return;
+                    }
+                    
                     if (new Date(clickedDate) < new Date(currentStart)) {
                         calendar.dataset.startDate = clickedDate;
                     } else {
@@ -234,6 +248,28 @@ function getBlockedDateSource(dateString, houseId) {
 
 function isDateBlocked(dateString, houseId) {
     return getBlockedDateSource(dateString, houseId).isBlocked;
+}
+
+function hasBlockedDatesInRange(startDate, endDate, houseId) {
+    if (!houseId || !blockedDates[houseId]) {
+        return false;
+    }
+
+    const ranges = blockedDates[houseId];
+    
+    // Check if any blocked date range overlaps with the selected range
+    for (const range of ranges) {
+        const blockedStart = new Date(range.start);
+        const blockedEnd = new Date(range.end);
+        
+        // Check for any overlap between selected range and blocked range
+        // Overlap occurs if: selectedStart < blockedEnd AND selectedEnd > blockedStart
+        if (startDate < blockedEnd && endDate > blockedStart) {
+            return true;
+        }
+    }
+    
+    return false;
 }
 
 function updateBookingSelectionDisplay(calendar) {
