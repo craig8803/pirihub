@@ -26,6 +26,10 @@ CORS(app)
 ADMIN_EMAIL = os.getenv('ADMIN_EMAIL', 'craig_halliday@mac.com')
 SMTP_PASSWORD = os.getenv('SMTP_PASSWORD')
 SMTP_EMAIL = os.getenv('SMTP_EMAIL', 'craig_halliday@mac.com')
+SMTP_HOST = os.getenv('SMTP_HOST', 'smtp.gmail.com')
+SMTP_PORT = int(os.getenv('SMTP_PORT', '465'))
+SMTP_USE_TLS = os.getenv('SMTP_USE_TLS', 'false').lower() == 'true'
+SMTP_USE_SSL = os.getenv('SMTP_USE_SSL', 'true').lower() == 'true'
 
 # Pricing configuration
 NIGHTLY_RATE_USD = 300
@@ -82,9 +86,16 @@ def send_email(to_email, subject, html_content):
         
         msg.attach(MIMEText(html_content, 'html'))
         
-        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
-            server.login(SMTP_EMAIL, SMTP_PASSWORD)
-            server.sendmail(SMTP_EMAIL, [to_email], msg.as_string())
+        if SMTP_USE_SSL:
+            with smtplib.SMTP_SSL(SMTP_HOST, SMTP_PORT) as server:
+                server.login(SMTP_EMAIL, SMTP_PASSWORD)
+                server.sendmail(SMTP_EMAIL, [to_email], msg.as_string())
+        else:
+            with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as server:
+                if SMTP_USE_TLS:
+                    server.starttls()
+                server.login(SMTP_EMAIL, SMTP_PASSWORD)
+                server.sendmail(SMTP_EMAIL, [to_email], msg.as_string())
         
         return True
     except Exception as e:
