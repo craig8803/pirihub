@@ -32,7 +32,10 @@ jobs:
       
       - name: Commit and push changes
         run: |
-          git config user.name "Calendar Sync Bot"
-          git config user.email "bot@pirihub.local"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           git add blocked_dates.json
           git diff --quiet && git diff --staged --quiet || (git commit -m "Update blocked dates from Airbnb" && git push)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
