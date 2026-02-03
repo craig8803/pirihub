@@ -431,8 +431,8 @@ function attachReviewFormListeners() {
                 alert('Thank you! Your verified review has been submitted successfully.');
                 form.reset();
                 
-                // Optionally reload reviews section to show new review
-                // loadReviews(houseId);
+                // Reload reviews section to show new review
+                loadReviews(houseId);
                 
             } catch (error) {
                 console.error('Error submitting review:', error);
@@ -450,6 +450,56 @@ function getCurrentHouseId() {
     if (h1.includes('casa sol')) return 'casa-sol';
     if (h1.includes('mini casa')) return 'mini-casa';
     return null;
+}
+
+// Load and display reviews for a house
+async function loadReviews(houseId) {
+    try {
+        const response = await fetch(`${API_BASE_URL}/api/reviews/${houseId}`);
+        
+        if (!response.ok) {
+            console.error('Failed to load reviews');
+            return;
+        }
+        
+        const data = await response.json();
+        const reviews = data.reviews || [];
+        
+        const reviewsSection = document.querySelector('.reviews-section');
+        if (!reviewsSection) return;
+        
+        if (reviews.length === 0) {
+            reviewsSection.innerHTML = '<p><em>No reviews yet. Be the first to share your experience!</em></p>';
+            return;
+        }
+        
+        let reviewsHtml = '<h3>What our guests say</h3>';
+        reviews.forEach(review => {
+            const stars = '★'.repeat(review.rating) + '☆'.repeat(5 - review.rating);
+            const date = new Date(review.createdAt).toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+            const verifiedBadge = review.verified ? ' <span class="verified-badge">✓ Verified Guest</span>' : '';
+            
+            reviewsHtml += `
+                <div class="review">
+                    <div class="review-header">
+                        <strong>${review.reviewerName}</strong>${verifiedBadge}
+                        <div class="review-rating">${stars}</div>
+                    </div>
+                    <p>"${review.comment}"</p>
+                    <p class="review-date"><small>${date}</small></p>
+                </div>
+            `;
+        });
+        
+        reviewsSection.innerHTML = reviewsHtml;
+        
+    } catch (error) {
+        console.error('Error loading reviews:', error);
+    }
 }
 
 function getBookingFormValues(detailsForm) {
@@ -541,4 +591,10 @@ function validatePhoneFormat(phone) {
 document.addEventListener('DOMContentLoaded', function() {
     renderBookingCalendars();
     attachReviewFormListeners();
+    
+    // Load reviews for house pages
+    const houseId = getCurrentHouseId();
+    if (houseId) {
+        loadReviews(houseId);
+    }
 });
