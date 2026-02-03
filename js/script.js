@@ -512,3 +512,9 @@ function validatePhoneFormat(phone) {
     }
     return true;
 }
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+    renderBookingCalendars();
+    attachReviewFormListeners();
+});
