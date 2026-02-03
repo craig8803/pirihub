@@ -305,6 +305,7 @@ footer {
     border-radius: 8px;
     padding: 1rem;
     background-color: #fafafa;
+    margin-bottom: 1rem;
 }
 
 .review-header {
@@ -324,6 +325,22 @@ footer {
     margin: 0;
     line-height: 1.5;
     color: #333;
+}
+
+.review-date {
+    color: #888;
+    font-size: 0.85rem;
+    margin-top: 0.5rem !important;
+}
+
+.verified-badge {
+    display: inline-block;
+    background-color: #4CAF50;
+    color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    margin-left: 0.5rem;
 }
 
 /* Dropdown menu styles */

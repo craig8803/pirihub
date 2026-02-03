@@ -317,5 +317,28 @@ def submit_review():
         print(f"Error submitting review: {e}")
         return jsonify({'error': 'Failed to submit review'}), 500
 
+@app.route('/api/reviews/<house_id>', methods=['GET'])
+def get_reviews(house_id):
+    """Get all verified reviews for a specific house."""
+    try:
+        reviews_file = 'reviews.json'
+        if os.path.exists(reviews_file):
+            with open(reviews_file, 'r') as f:
+                reviews_data = json.load(f)
+        else:
+            reviews_data = {'reviews': []}
+        
+        # Filter reviews for the specific house
+        house_reviews = [r for r in reviews_data['reviews'] if r['house'] == house_id]
+        
+        # Sort by most recent first
+        house_reviews.sort(key=lambda x: x.get('createdAt', ''), reverse=True)
+        
+        return jsonify({'reviews': house_reviews}), 200
+        
+    except Exception as e:
+        print(f"Error fetching reviews: {e}")
+        return jsonify({'error': 'Failed to fetch reviews'}), 500
+
 if __name__ == '__main__':
     app.run(debug=True, port=5001)

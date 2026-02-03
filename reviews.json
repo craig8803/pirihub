@@ -1,3 +1,24 @@
 {
-  "reviews": []
+  "reviews": [
+    {
+      "id": "989bec45-958a-436b-a202-c87f73ca9b15",
+      "bookingId": "18da5ae2-27b0-43ea-b96e-776a259369c4",
+      "house": "casa-matutina",
+      "reviewerName": "Craig Halliday",
+      "rating": 5,
+      "comment": "They even let my stinky cat stay. Awesome!",
+      "createdAt": "2026-02-03T17:30:39.067834",
+      "verified": true
+    },
+    {
+      "id": "39d5ac76-466d-440f-b47a-cb3d2689bb0c",
+      "bookingId": "18da5ae2-27b0-43ea-b96e-776a259369c4",
+      "house": "casa-matutina",
+      "reviewerName": "Craig Halliday",
+      "rating": 5,
+      "comment": "They even let my stinky cat stay. Awesome!",
+      "createdAt": "2026-02-03T17:30:39.068841",
+      "verified": true
+    }
+  ]
 }
