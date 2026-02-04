@@ -8,35 +8,77 @@
 </head>
 <body>
     <header>
-        <nav>
+        <button id="menu-toggle" class="menu-toggle" aria-label="Toggle navigation menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav id="nav-menu" class="nav-menu">
             <ul>
-                <li><a href="index.html"><img src="img/logo.png" alt="PiriHub Logo" style="height: 40px;"></a></li>
-                <li><a href="coliving.html">coliving</a></li>
+                <li><a href="index.html"><img src="img/logo.png" alt="PiriHub Logo" class="logo"></a></li>
                 <li class="dropdown">
-                    <a href="houses.html">houses</a>
+                    <a href="#">houses</a>
                     <ul class="dropdown-menu">
-                        <li><a href="houses.html?house=house1">Casa Matutina</a></li>
-                        <li><a href="houses.html?house=house2">Atelier</a></li>
-                        <li><a href="houses.html?house=house3">Casa Sol</a></li>
-                        <li><a href="houses.html?house=house4">Mini Casa</a></li>
+                        <li><a href="casa-matutina.html">Casa Matutina</a></li>
+                        <li><a href="casa-atelier.html">Atelier</a></li>
+                        <li><a href="casa-sol.html">Casa Sol</a></li>
+                        <li><a href="mini-casa.html">Mini Casa</a></li>
                     </ul>
                 </li>
+                <li><a href="pirenopolis.html">pirenópolis</a></li>
+                <li><a href="coliving.html">coliving</a></li>
                 <li><a href="services.html">services</a></li>
             </ul>
         </nav>
     </header>
     <main>
         <h1>Our Houses</h1>
-        <p>Select a house to learn more:</p>
-        <select id="house-select">
-            <option value="">Choose a house</option>
-            <option value="house1">Casa Matutina</option>
-            <option value="house2">Atelier</option>
-            <option value="house3">Casa Sol</option>
-            <option value="house4">Mini Casa</option>
-        </select>
-        <div id="house-info">
-            <!-- House details will be displayed here -->
+        <p style="font-size: 1.1rem; color: #555; margin-bottom: 2rem;">Choose the perfect space for your remote work lifestyle</p>
+        
+        <div class="property-grid">
+            <div class="property-card">
+                <div class="property-header">
+                    <h2>Casa Matutina</h2>
+                    <span class="property-badge badge-coliving">Coliving Community</span>
+                </div>
+                <p class="property-type">4 Bedrooms • Up to 8 Guests</p>
+                <p>A warm, character-filled house designed for remote worker communities. Features multiple work spaces, shared kitchen, pool, and plenty of room for meaningful connections.</p>
+                <p><strong>Best for:</strong> Coliving communities, group stays, and remote workers seeking vibrant social atmosphere</p>
+                <a href="casa-matutina.html" class="property-link">View Details →</a>
+            </div>
+
+            <div class="property-card">
+                <div class="property-header">
+                    <h2>Atelier</h2>
+                    <span class="property-badge badge-remote-work">Solo or Couples</span>
+                </div>
+                <p class="property-type">1 Bedroom • 1-2 Guests</p>
+                <p>A compact, thoughtfully designed retreat for solo travelers, couples, and remote workers. Quiet, comfortable, and perfectly suited for focused work and independent living.</p>
+                <p><strong>Best for:</strong> Solo travelers and couples seeking quiet, focused environment with minimal distractions</p>
+                <a href="casa-atelier.html" class="property-link">View Details →</a>
+            </div>
+
+            <div class="property-card">
+                <div class="property-header">
+                    <h2>Casa Sol</h2>
+                    <span class="property-badge badge-remote-work">Solo or Couples</span>
+                </div>
+                <p class="property-type">Intimate Space • 1-2 Guests</p>
+                <p>A peaceful, welcoming home perfect for solo travelers, couples, and remote workers. Quiet setting with reliable internet and comfortable work environment.</p>
+                <p><strong>Best for:</strong> Solo travelers and couples seeking a quiet, focused stay</p>
+                <a href="casa-sol.html" class="property-link">View Details →</a>
+            </div>
+
+            <div class="property-card">
+                <div class="property-header">
+                    <h2>Mini Casa</h2>
+                    <span class="property-badge badge-remote-work">Solo or Couples</span>
+                </div>
+                <p class="property-type">Cozy Home • 1-2 Guests</p>
+                <p>A small, intimate property ideal for solo travelers and couples. All the essentials in a comfortable, distraction-free setting with high-speed internet.</p>
+                <p><strong>Best for:</strong> Solo travelers and couples seeking a quiet, focused stay</p>
+                <a href="mini-casa.html" class="property-link">View Details →</a>
+            </div>
         </div>
     </main>
     <footer>

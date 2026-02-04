@@ -27,6 +27,141 @@
         }
       },
       "reviewed": true
+    },
+    {
+      "id": "b49284b6-922a-4c94-8656-3ab7d93d22eb",
+      "createdAt": "2026-02-04T12:52:39.911393",
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "craig_halliday@icloud.com",
+      "country": "+44",
+      "phone": "78234 555 66",
+      "guests": "1",
+      "startDate": "2026-03-15",
+      "endDate": "2026-03-31",
+      "house": "casa-matutina",
+      "nights": 16,
+      "notes": "",
+      "currency": "USD",
+      "status": "pending",
+      "pricing": {
+        "totalUSD": 4800,
+        "depositUSD": 2400.0,
+        "USD": {
+          "total": 4800.0,
+          "deposit": 2400.0,
+          "exchangeRate": 1.0,
+          "rateDate": "2026-02-04T12:52:39.912231"
+        }
+      }
+    },
+    {
+      "id": "f58c5326-d9ca-437a-b3ec-88c006ff0d0f",
+      "createdAt": "2026-02-04T14:55:20.221216",
+      "firstName": "Naymi",
+      "lastName": "Christoffel",
+      "email": "craig_halliday@icloud.com",
+      "country": "+41",
+      "phone": "782342229",
+      "guests": "5",
+      "startDate": "2026-03-08",
+      "endDate": "2026-03-27",
+      "house": "casa-matutina",
+      "nights": 19,
+      "notes": "",
+      "currency": "USD",
+      "status": "pending",
+      "pricing": {
+        "totalUSD": 5700,
+        "depositUSD": 2850.0,
+        "USD": {
+          "total": 5700.0,
+          "deposit": 2850.0,
+          "exchangeRate": 1.0,
+          "rateDate": "2026-02-04T14:55:20.222011"
+        }
+      }
+    },
+    {
+      "id": "6b068c07-ced3-4d1d-8086-5fbbb506541a",
+      "createdAt": "2026-02-04T15:04:26.902037",
+      "firstName": "Bob",
+      "lastName": "Smith",
+      "email": "craig_halliday@mac.com",
+      "country": "+44",
+      "phone": "782342229",
+      "guests": "1",
+      "startDate": "2026-03-15",
+      "endDate": "2026-03-31",
+      "house": "casa-matutina",
+      "nights": 16,
+      "notes": "",
+      "currency": "USD",
+      "status": "pending",
+      "pricing": {
+        "totalUSD": 4800,
+        "depositUSD": 2400.0,
+        "USD": {
+          "total": 4800.0,
+          "deposit": 2400.0,
+          "exchangeRate": 1.0,
+          "rateDate": "2026-02-04T15:04:26.902059"
+        }
+      }
+    },
+    {
+      "id": "6e3922c8-9f1f-4a97-a35a-f706a1375233",
+      "createdAt": "2026-02-04T15:10:03.563221",
+      "firstName": "Jason",
+      "lastName": "Bourne",
+      "email": "craig_halliday@mac.com",
+      "country": "+41",
+      "phone": "782342229",
+      "guests": "7",
+      "startDate": "2026-02-01",
+      "endDate": "2026-02-16",
+      "house": "casa-matutina",
+      "nights": 15,
+      "notes": "",
+      "currency": "USD",
+      "status": "pending",
+      "pricing": {
+        "totalUSD": 4500,
+        "depositUSD": 2250.0,
+        "USD": {
+          "total": 4500.0,
+          "deposit": 2250.0,
+          "exchangeRate": 1.0,
+          "rateDate": "2026-02-04T15:10:03.563243"
+        }
+      }
+    },
+    {
+      "id": "f72f1fc8-ac51-45d9-a351-26efeba90a53",
+      "createdAt": "2026-02-04T15:22:34.243988",
+      "firstName": "Audrey",
+      "lastName": "Tatou",
+      "email": "craig_halliday@mac.com",
+      "country": "+49",
+      "phone": "782342229",
+      "guests": "4",
+      "startDate": "2027-03-01",
+      "endDate": "2027-03-24",
+      "house": "casa-sol",
+      "nights": 23,
+      "notes": "",
+      "currency": "USD",
+      "status": "pending",
+      "pricing": {
+        "totalUSD": 6900,
+        "depositUSD": 3450.0,
+        "USD": {
+          "total": 6900.0,
+          "deposit": 3450.0,
+          "exchangeRate": 1.0,
+          "rateDate": "2026-02-04T15:22:34.244007"
+        }
+      }
     }
   ]
 }
