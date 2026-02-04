@@ -132,6 +132,7 @@ def submit_booking():
             'lastName': data['lastName'],
             'email': data['email'],
             'country': data['country'],
+            'countryName': data.get('countryName', ''),
             'phone': data['phone'],
             'guests': data['guests'],
             'startDate': data['startDate'],
@@ -140,6 +141,8 @@ def submit_booking():
             'nights': nights,
             'notes': data.get('notes', ''),
             'currency': data.get('currency', 'USD'),
+            'currencyName': data.get('currencyName', ''),
+            'currencySymbol': data.get('currencySymbol', ''),
             'status': 'pending',  # pending → approved → paid
         }
         
@@ -181,6 +184,9 @@ def submit_booking():
                 <li><strong>Duration:</strong> {booking['nights']} nights</li>
                 <li><strong>Guests:</strong> {booking['guests']}</li>
                 <li><strong>Booking ID:</strong> {booking['id']}</li>
+                <li><strong>Country code:</strong> {booking['country']}</li>
+                <li><strong>Country:</strong> {booking.get('countryName', 'N/A')}</li>
+                <li><strong>Currency:</strong> {booking.get('currencyName', 'N/A')} ({booking.get('currencySymbol', 'N/A')})</li>
             </ul>
             <p><strong>Pricing:</strong></p>
             <ul>
@@ -205,7 +211,9 @@ def submit_booking():
             <p><strong>Guest:</strong> {booking['firstName']} {booking['lastName']}</p>
             <p><strong>Email:</strong> {booking['email']}</p>
             <p><strong>Phone:</strong> {booking['phone']}</p>
-            <p><strong>Country:</strong> {booking['country']}</p>
+            <p><strong>Country code:</strong> {booking['country']}</p>
+            <p><strong>Country:</strong> {booking.get('countryName', 'N/A')}</p>
+            <p><strong>Currency:</strong> {booking.get('currencyName', 'N/A')} ({booking.get('currencySymbol', 'N/A')})</p>
             <p><strong>Property:</strong> {HOUSES[booking['house']]['name']}</p>
             <p><strong>Dates:</strong> {booking['startDate']} to {booking['endDate']} ({booking['nights']} nights)</p>
             <p><strong>Guests:</strong> {booking['guests']}</p>

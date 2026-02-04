@@ -8,11 +8,14 @@
 </head>
 <body>
     <header>
-        <nav>
+        <button id="menu-toggle" class="menu-toggle" aria-label="Toggle navigation menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav id="nav-menu" class="nav-menu">
             <ul>
-                <li><a href="index.html"><img src="img/logo.png" alt="PiriHub Logo" style="height: 180px;"></a></li>
-                <li><a href="pirenopolis.html">pirenópolis</a></li>
-                <li><a href="coliving.html">coliving</a></li>
+                <li><a href="index.html"><img src="img/logo.png" alt="PiriHub Logo" class="logo"></a></li>
                 <li class="dropdown">
                     <a href="#">houses</a>
                     <ul class="dropdown-menu">
@@ -22,31 +25,35 @@
                         <li><a href="mini-casa.html">Mini Casa</a></li>
                     </ul>
                 </li>
+                <li><a href="pirenopolis.html">pirenópolis</a></li>
+                <li><a href="coliving.html">coliving</a></li>
                 <li><a href="services.html">services</a></li>
             </ul>
         </nav>
     </header>
     <main>
-        <h1>Welcome to PiriHub</h1>
-        <p>Discover coliving in the beautiful town of Pirenópolis, Brazil – where history meets nature, and community thrives.</p>
+        <h1>PiriHub</h1>
+        <p>Welcoming spaces for coliving and remote work in Pirenópolis, Brazil. A beautiful colonial town surrounded by waterfalls, nature, and a vibrant community.</p>
         
-        <h2>Why Pirenópolis?</h2>
-        <p>Pirenópolis is a hidden gem nestled in the heart of Goiás, Brazil. This charming colonial town captivates visitors with its cobblestone streets, whitewashed churches, and centuries-old architecture. But Pirenópolis is much more than a tourist destination – it's a living, breathing community that welcomes those seeking a different way of life.</p>
-        
-        <h2>Natural wonders</h2>
-        <p>Surrounded by the Serra de Pirenópolis mountains, the town offers breathtaking natural beauty. Explore numerous waterfalls cascading into crystal-clear pools, hike scenic trails through lush forests, and swim in natural springs. The nearby Pirenópolis River provides opportunities for kayaking and fishing, while adventure seekers can enjoy rock climbing and paragliding.</p>
-        
-        <h2>Rich culture and history</h2>
-        <p>Dating back to 1727, Pirenópolis is a living museum of Brazilian colonial architecture and culture. The historic downtown area features baroque churches, colorful colonial buildings, and vibrant markets. The town hosts traditional festivals throughout the year, including the famous Festival of Divine Holy Spirit and numerous cultural events that celebrate local traditions and art.</p>
-        
-        <h2>Thriving creative community</h2>
-        <p>Pirenópolis has become a haven for artists, musicians, writers, and creators from around the world. The town's cafes, galleries, and studios pulse with creative energy. Whether you're looking to collaborate with fellow artists or simply be inspired by the artistic atmosphere, Pirenópolis offers endless opportunities.</p>
-        
-        <h2>Perfect for remote workers</h2>
-        <p>With reliable internet and a growing digital nomad community, Pirenópolis is an ideal base for remote workers. Enjoy a lower cost of living, access to co-working spaces, and a supportive community of like-minded professionals – all in a setting far more inspiring than any city office.</p>
-        
-        <h2>Experience coliving at PiriHub</h2>
-        <p>At PiriHub, we've created welcoming spaces where you can immerse yourself in all that Pirenópolis has to offer while building meaningful connections with fellow residents from around the world. Whether you're seeking adventure, creative inspiration, or a more authentic way of living, we have the perfect house waiting for you.</p>
+        <h2>Explore</h2>
+        <div class="explore-links">
+            <a href="houses.html" class="explore-card houses">
+                <h3>Our Properties</h3>
+                <p>Casa Matutina for coliving, or Atelier, Casa Sol, and Mini Casa for solo and couple stays</p>
+            </a>
+            <a href="coliving.html" class="explore-card coliving">
+                <h3>Coliving</h3>
+                <p>Discover what coliving means and why Pirenópolis is the perfect setting</p>
+            </a>
+            <a href="pirenopolis.html" class="explore-card pirenopolis">
+                <h3>Pirenópolis</h3>
+                <p>Explore waterfalls, history, culture, and adventure in our community</p>
+            </a>
+            <a href="services.html" class="explore-card services">
+                <h3>Services</h3>
+                <p>Learn what we offer to support your stay</p>
+            </a>
+        </div>
     </main>
     <footer>
         <p>&copy; 2026 PiriHub. All rights reserved.</p>

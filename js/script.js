@@ -1,3 +1,40 @@
+// Mobile Menu Toggle
+document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.getElementById('menu-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    
+    if (menuToggle && navMenu) {
+        // Toggle menu on button click
+        menuToggle.addEventListener('click', function() {
+            menuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+        
+        // Close menu when clicking on a link
+        const links = navMenu.querySelectorAll('a');
+        links.forEach(link => {
+            link.addEventListener('click', function() {
+                menuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+                // Close dropdown if open
+                document.querySelectorAll('.dropdown.active').forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+            });
+        });
+        
+        // Handle dropdown menus
+        const dropdowns = navMenu.querySelectorAll('.dropdown > a');
+        dropdowns.forEach(dropdown => {
+            dropdown.addEventListener('click', function(e) {
+                e.preventDefault();
+                const parentDropdown = this.parentElement;
+                parentDropdown.classList.toggle('active');
+            });
+        });
+    }
+});
+
 // Configuration
 const API_BASE_URL = 'http://localhost:5001';
 
@@ -486,18 +523,24 @@ function updateBookingSelectionDisplay(calendar) {
                 }
 
                 // Prepare booking data
+                const currencyCode = getCurrencyFromCountry(currentValues.countryCode);
+                const currencyInfo = getCurrencyInfo(currencyCode);
+                
                 const bookingData = {
                     firstName: currentValues.firstName,
                     lastName: currentValues.lastName,
                     email: currentValues.email,
                     country: currentValues.countryCode || 'US',
+                    countryName: currentValues.countryName || 'United States',
                     phone: currentValues.phone,
                     guests: currentValues.guests,
                     startDate: currentStart,
                     endDate: currentEnd,
                     notes: currentValues.notes,
                     house: houseId,
-                    currency: getCurrencyFromCountry(currentValues.countryCode)
+                    currency: currencyCode,
+                    currencyName: currencyInfo.name,
+                    currencySymbol: currencyInfo.symbol
                 };
 
                 try {
@@ -521,7 +564,8 @@ function updateBookingSelectionDisplay(calendar) {
                         detailsForm.reset();
                         calendar.dataset.startDate = '';
                         calendar.dataset.endDate = '';
-                        updateBookingUI(wrapper);
+                        // Refresh the page to reset UI
+                        location.reload();
                     } else {
                         alert(`Error: ${result.error}`);
                         bookingButton.disabled = false;
@@ -547,6 +591,28 @@ function getCurrencyFromCountry(countryCode) {
         'CH': 'CHF', 'SE': 'SEK', 'NO': 'NOK', 'DK': 'DKK', 'NZ': 'NZD',
     };
     return currencyMap[countryCode] || 'USD';
+}
+
+function getCurrencyInfo(currencyCode) {
+    // Map currency codes to names and symbols
+    const currencyInfo = {
+        'USD': { name: 'US Dollar', symbol: '$' },
+        'GBP': { name: 'British Pound', symbol: '£' },
+        'EUR': { name: 'Euro', symbol: '€' },
+        'CAD': { name: 'Canadian Dollar', symbol: 'C$' },
+        'AUD': { name: 'Australian Dollar', symbol: 'A$' },
+        'BRL': { name: 'Brazilian Real', symbol: 'R$' },
+        'JPY': { name: 'Japanese Yen', symbol: '¥' },
+        'CNY': { name: 'Chinese Yuan', symbol: '¥' },
+        'INR': { name: 'Indian Rupee', symbol: '₹' },
+        'MXN': { name: 'Mexican Peso', symbol: '$' },
+        'CHF': { name: 'Swiss Franc', symbol: 'CHF' },
+        'SEK': { name: 'Swedish Krona', symbol: 'kr' },
+        'NOK': { name: 'Norwegian Krone', symbol: 'kr' },
+        'DKK': { name: 'Danish Krone', symbol: 'kr' },
+        'NZD': { name: 'New Zealand Dollar', symbol: 'NZ$' },
+    };
+    return currencyInfo[currencyCode] || { name: currencyCode, symbol: currencyCode };
 }
 
 function calculateNights(startDate, endDate) {
@@ -687,6 +753,7 @@ function getBookingFormValues(detailsForm) {
     const email = emailInput?.value.trim() || '';
     const countrySelect = detailsForm.querySelector('select[name="country"]');
     const countryCode = countrySelect?.value || '';
+    const countryName = countrySelect?.selectedOptions[0]?.text || '';
     const phoneInput = detailsForm.querySelector('input[name="phone"]');
     const phone = phoneInput?.value.trim() || '';
     const guests = detailsForm.querySelector('input[name="guests"]')?.value.trim() || '';
@@ -731,6 +798,7 @@ function getBookingFormValues(detailsForm) {
         lastName,
         email,
         countryCode,
+        countryName,
         phone,
         fullPhone: countryCode && phone ? `${countryCode} ${phone}` : phone,
         guests,
