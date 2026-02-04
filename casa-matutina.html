@@ -8,11 +8,14 @@
 </head>
 <body>
     <header>
-        <nav>
+        <button id="menu-toggle" class="menu-toggle" aria-label="Toggle navigation menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav id="nav-menu" class="nav-menu">
             <ul>
-                <li><a href="index.html"><img src="img/logo.png" alt="PiriHub Logo" style="height: 180px;"></a></li>
-                <li><a href="pirenopolis.html">pirenópolis</a></li>
-                <li><a href="coliving.html">coliving</a></li>
+                <li><a href="index.html"><img src="img/logo.png" alt="PiriHub Logo" class="logo"></a></li>
                 <li class="dropdown">
                     <a href="#">houses</a>
                     <ul class="dropdown-menu">
@@ -22,24 +25,39 @@
                         <li><a href="mini-casa.html">Mini Casa</a></li>
                     </ul>
                 </li>
+                <li><a href="pirenopolis.html">pirenópolis</a></li>
+                <li><a href="coliving.html">coliving</a></li>
                 <li><a href="services.html">services</a></li>
             </ul>
         </nav>
     </header>
-    <main>
-        <h1>Casa Matutina</h1>
+    <main id="top">
+        <div class="page-header">
+            <div>
+                <h1>Casa Matutina</h1>
+                <span class="property-badge badge-coliving">Coliving Community</span>
+            </div>
+            <div class="header-buttons">
+                <a href="#reviews-section" class="see-reviews-btn">See Reviews</a>
+                <a href="#add-review-section" class="add-review-btn">Add Review</a>
+                <a href="#booking-section" class="book-now-btn">Book Now</a>
+            </div>
+        </div>
         
-        <h2>The space</h2>
+        <div class="best-for">
+            <h3>Best For</h3>
+            <p>Coliving communities, group stays, and remote workers seeking a vibrant social atmosphere with shared experiences and connections.</p>
+        </div>
 
         <p>Welcome to Casa Matutina, a warm and character-filled house designed for people who work remotely and value both focus and quality of life. The property features four thoughtfully decorated bedrooms: one with a king-size bed, two with queen-size beds, and one with a double bed. Each room includes air conditioning, bedside lamps, and high-quality bed and bath linens for comfortable short or long stays.</p>
 
-        <p>The kitchen is fully equipped for everyday living and longer co-living stays, with an electric oven, microwave, sandwich maker, two coffee machines, refrigerator, freezer, and filtered hot and cold water—ideal for early work mornings, shared meals, and slow evenings.</p>
+        <p>The kitchen is fully equipped for everyday living and longer co-living stays, with an electric oven, microwave, sandwich maker, two coffee machines, refrigerator, freezer, and filtered hot and cold water. Ideal for early work mornings, shared meals, and slow evenings.</p>
 
-        <p>Built in the 2000s in authentic colonial style, Casa Matutina blends craftsmanship and modern comfort. Its handcrafted wooden structure, assembled without nails, gives the house a calm, grounded atmosphere that many remote workers find ideal for concentration. The property has two shared bathrooms, an additional bathroom in the gourmet barbecue area, and a heated swimming pool with a hot tub—perfect for decompressing after a productive day.</p>
+        <p>Built in the 2000s in authentic colonial style, Casa Matutina blends craftsmanship and modern comfort. Its handcrafted wooden structure, assembled without nails, gives the house a calm, grounded atmosphere that many remote workers find ideal for concentration. The property has two shared bathrooms, an additional bathroom in the gourmet barbecue area, and a heated swimming pool with a hot tub. Perfect for decompressing after a productive day.</p>
 
-        <p>Casa Matutina is designed for remote work. The house offers a fast, reliable internet connection and a variety of work-friendly environments. Guests can work at the large communal table in the living room, on the shaded verandah, at one of the outdoor tables, in one of the many hammocks across the property, or—if they prefer—right beside the pool. The flexibility of spaces supports different working styles, from deep-focus sessions to more relaxed, creative flows.</p>
+        <p>Casa Matutina is designed for remote work. The house offers a fast, reliable internet connection and a variety of work-friendly environments. Guests can work at the large communal table in the living room, on the shaded verandah, at one of the outdoor tables, in one of the many hammocks across the property, or if they prefer right beside the pool. The flexibility of spaces supports different working styles, from deep-focus sessions to more relaxed, creative flows.</p>
 
-        <p>The gourmet barbecue kitchen and shared social areas encourage natural interaction, while still allowing plenty of room for privacy and personal rhythm—making Casa Matutina especially well suited to boutique co-living and longer nomad stays.</p>
+        <p>The gourmet barbecue kitchen and shared social areas encourage natural interaction, while still allowing plenty of room for privacy and personal rhythm. This makes Casa Matutina especially well suited to boutique co-living and longer nomad stays.</p>
 
         <p>With a secure garage, generous common areas, and a shower that feels like a waterfall, the house balances practicality with comfort. The subtle scent of wood throughout creates a sense of calm that many guests associate with feeling settled rather than transient.</p>
 
@@ -49,7 +67,7 @@
 
         <p>Guests have access to all shared areas of Casa Matutina, including indoor and outdoor spaces designed for working, relaxing, and connecting with others.</p>
 
-        <p>Located in the historic center of Pirenópolis, the house is highly walkable. Cafés, bakeries, restaurants, small shops, and local attractions are all nearby, allowing you to structure your days without relying on a car—an important advantage for nomads staying mid- to long-term.</p>
+        <p>Located in the historic center of Pirenópolis, the house is highly walkable. Cafés, bakeries, restaurants, small shops, and local attractions are all nearby, allowing you to structure your days without relying on a car. An important advantage for nomads staying mid to long term.</p>
 
         <hr>
 
@@ -59,16 +77,47 @@
 
         <p>From the property, guests can enjoy views of the surrounding mountains, including Morro do Frota, reinforcing the feeling of being connected to nature while staying in town. This balance of calm, community, and accessibility is what makes Casa Matutina especially appealing to digital nomads seeking a slower, more intentional base.</p>
 
-        <p>Whether you are staying for a few weeks or several months, Casa Matutina offers the infrastructure, atmosphere, and location to support both productive workdays and meaningful downtime. It's not just a place to stay—it's a place to settle in.</p>
+        <p>Whether you are staying for a few weeks or several months, Casa Matutina offers the infrastructure, atmosphere, and location to support both productive workdays and meaningful downtime. It's not just a place to stay. It's a place to settle in.</p>
 
-        <h2>Booking calendar</h2>
+        <h2>Guest reviews</h2>
+        <div class="reviews-section" id="reviews-section">
+        </div>
+
+        <h2>Share your experience</h2>
+        <div class="review-form-section" id="add-review-section">
+            <p><em>Only guests who have booked and stayed can leave a review. Please enter your booking ID from your confirmation email.</em></p>
+            <form class="review-form" id="review-form-matutina">
+                <label for="booking-id-matutina">Booking ID</label>
+                <input type="text" id="booking-id-matutina" name="bookingId" placeholder="e.g., 18da5ae2-27b0-43ea-b96e-776a259369c4" required>
+
+                <label for="reviewer-name-matutina">Your Name</label>
+                <input type="text" id="reviewer-name-matutina" name="reviewerName" required>
+
+                <label for="reviewer-rating-matutina">Rating</label>
+                <select id="reviewer-rating-matutina" name="reviewerRating" required>
+                    <option value="">Select a rating</option>
+                    <option value="5">5 Stars - Excellent</option>
+                    <option value="4">4 Stars - Very Good</option>
+                    <option value="3">3 Stars - Good</option>
+                    <option value="2">2 Stars - Fair</option>
+                    <option value="1">1 Star - Poor</option>
+                </select>
+
+                <label for="reviewer-comment-matutina">Your Review</label>
+                <textarea id="reviewer-comment-matutina" name="reviewerComment" rows="4" placeholder="Tell other guests about your stay" required></textarea>
+
+                <button type="submit" class="review-submit-btn">Submit Review</button>
+            </form>
+        </div>
+
+        <h2 id="booking-section">Booking calendar</h2>
         <p>Select your preferred dates to request a booking:</p>
-        <div class="booking-calendar" data-month-offset="0" aria-label="Monthly booking calendar"></div>
         <div class="booking-selection">
             <div>Start: <span class="booking-start">Not selected</span></div>
             <div>End: <span class="booking-end">Not selected</span></div>
             <div>Nights: <span class="booking-nights">0</span></div>
         </div>
+        <div class="booking-calendar" data-month-offset="0" aria-label="Monthly booking calendar"></div>
         <form class="booking-details">
             <label for="first-name-matutina">First Name</label>
             <input type="text" id="first-name-matutina" name="firstName" required>
@@ -270,39 +319,8 @@
             <textarea id="notes-matutina" name="notes" rows="3" placeholder="Tell us anything important about your stay"></textarea>
         </form>
         <button class="booking-button" type="button" data-house="Casa Matutina" disabled>Request Booking</button>
-        
-        <h2>Guest reviews</h2>
-        <div class="review-form-section">
-            <h3>Share your experience</h3>
-            <p><em>Only guests who have booked and stayed can leave a review. Please enter your booking ID from your confirmation email.</em></p>
-            <form class="review-form" id="review-form-matutina">
-                <label for="booking-id-matutina">Booking ID</label>
-                <input type="text" id="booking-id-matutina" name="bookingId" placeholder="e.g., 18da5ae2-27b0-43ea-b96e-776a259369c4" required>
 
-                <label for="reviewer-name-matutina">Your Name</label>
-                <input type="text" id="reviewer-name-matutina" name="reviewerName" required>
-
-                <label for="reviewer-rating-matutina">Rating</label>
-                <select id="reviewer-rating-matutina" name="reviewerRating" required>
-                    <option value="">Select a rating</option>
-                    <option value="5">5 Stars - Excellent</option>
-                    <option value="4">4 Stars - Very Good</option>
-                    <option value="3">3 Stars - Good</option>
-                    <option value="2">2 Stars - Fair</option>
-                    <option value="1">1 Star - Poor</option>
-                </select>
-
-                <label for="reviewer-comment-matutina">Your Review</label>
-                <textarea id="reviewer-comment-matutina" name="reviewerComment" rows="4" placeholder="Tell other guests about your stay" required></textarea>
-
-                <button type="submit" class="review-submit-btn">Submit Review</button>
-            </form>
-        </div>
-
-        <div class="reviews-section">
-        </div>
-
-        <p><a href="#">Back to Houses</a></p>
+        <p><a href="#top" class="top-link">Top</a></p>
     </main>
     <footer>
         <p>&copy; 2026 PiriHub. All rights reserved.</p>

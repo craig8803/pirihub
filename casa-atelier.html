@@ -8,11 +8,14 @@
 </head>
 <body>
     <header>
-        <nav>
+        <button id="menu-toggle" class="menu-toggle" aria-label="Toggle navigation menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav id="nav-menu" class="nav-menu">
             <ul>
-                <li><a href="index.html"><img src="img/logo.png" alt="PiriHub Logo" style="height: 180px;"></a></li>
-                <li><a href="pirenopolis.html">pirenópolis</a></li>
-                <li><a href="coliving.html">coliving</a></li>
+                <li><a href="index.html"><img src="img/logo.png" alt="PiriHub Logo" class="logo"></a></li>
                 <li class="dropdown">
                     <a href="#">houses</a>
                     <ul class="dropdown-menu">
@@ -22,36 +25,84 @@
                         <li><a href="mini-casa.html">Mini Casa</a></li>
                     </ul>
                 </li>
+                <li><a href="pirenopolis.html">pirenópolis</a></li>
+                <li><a href="coliving.html">coliving</a></li>
                 <li><a href="services.html">services</a></li>
             </ul>
         </nav>
     </header>
-    <main>
-        <h1>Atelier</h1>
+    <main id="top">
+        <div class="page-header">
+            <div>
+                <h1>Atelier</h1>
+                <span class="property-badge badge-remote-work">Solo or Couples</span>
+            </div>
+            <div class="header-buttons">
+                <a href="#reviews-section" class="see-reviews-btn">See Reviews</a>
+                <a href="#add-review-section" class="add-review-btn">Add Review</a>
+                <a href="#booking-section" class="book-now-btn">Book Now</a>
+            </div>
+        </div>
+        
+        <div class="best-for">
+            <h3>Best For</h3>
+            <p>Solo travelers, couples, and remote workers seeking a quiet, focused environment with minimal distractions and maximum productivity.</p>
+        </div>
         <h2>The space</h2>
         <p>Atelier Home-Office is a compact, thoughtfully designed retreat for solo travelers, couples, or remote workers looking for a quiet and comfortable base in Pirenópolis. This one-bedroom, one-bathroom home is ideal for focused work and relaxed living, offering a calm, uncluttered environment that suits both short and longer stays.</p>
-        <p>The space includes air conditioning, a practical kitchenette, and a minibar—perfect for simple meals, coffee breaks between work sessions, and independent day-to-day living. Everything is arranged to support a productive rhythm without unnecessary distractions.</p>
+        <p>The space includes air conditioning, a practical kitchenette, and a minibar. Perfect for simple meals, coffee breaks between work sessions, and independent day-to-day living. Everything is arranged to support a productive rhythm without unnecessary distractions.</p>
         <p>With a fast and reliable internet connection, Atelier Home-Office works especially well for digital nomads who need a dependable setup for remote work, video calls, and deep-focus time.</p>
         <hr>
-        <h2>Comfort & facilities</h2>
+        <h2>Comfort and facilities</h2>
         <p>Guests benefit from free Wi-Fi and free on-site private parking. The property is equipped with modern amenities designed to make working remotely easy and comfortable, while still feeling personal and relaxed rather than hotel-like.</p>
         <hr>
         <h2>Location</h2>
         <p>Atelier Home-Office is located just steps from the Nossa Senhora do Rosário Church, placing you right in the historic heart of Pirenópolis. Bonfim Church is less than 1 km away, and nearby attractions include the Cavalhadas Museum, Leisure Street, and Pirenópolis Theater.</p>
-        <p>Thanks to its central and walkable location, cafés, restaurants, and cultural spots are easily accessible on foot—ideal for structuring your days around work, exploration, and downtime without needing a car.</p>
+        <p>Thanks to its central and walkable location, cafés, restaurants, and cultural spots are easily accessible on foot. Ideal for structuring your days around work, exploration, and downtime without needing a car.</p>
         <p>Santa Genoveva / Goiânia Airport is approximately 111 km away.</p>
         <hr>
         <h2>Good to know</h2>
         <p>This space is designed for guests who value simplicity, privacy, and functionality. Whether you're in Pirenópolis for a focused work sprint, a creative project, or a slower stay with a strong work-life balance, Atelier Home-Office offers a practical, well-located base that lets you settle in and get things done.</p>
 
-        <h2>Booking calendar</h2>
+        <h2>Guest reviews</h2>
+        <div class="reviews-section" id="reviews-section">
+        </div>
+
+        <h2>Share your experience</h2>
+        <div class="review-form-section" id="add-review-section">
+            <p><em>Only guests who have booked and stayed can leave a review. Please enter your booking ID from your confirmation email.</em></p>
+            <form class="review-form" id="review-form-atelier">
+                <label for="booking-id-atelier">Booking ID</label>
+                <input type="text" id="booking-id-atelier" name="bookingId" placeholder="e.g., 18da5ae2-27b0-43ea-b96e-776a259369c4" required>
+
+                <label for="reviewer-name-atelier">Your Name</label>
+                <input type="text" id="reviewer-name-atelier" name="reviewerName" required>
+
+                <label for="reviewer-rating-atelier">Rating</label>
+                <select id="reviewer-rating-atelier" name="reviewerRating" required>
+                    <option value="">Select a rating</option>
+                    <option value="5">5 Stars - Excellent</option>
+                    <option value="4">4 Stars - Very Good</option>
+                    <option value="3">3 Stars - Good</option>
+                    <option value="2">2 Stars - Fair</option>
+                    <option value="1">1 Star - Poor</option>
+                </select>
+
+                <label for="reviewer-comment-atelier">Your Review</label>
+                <textarea id="reviewer-comment-atelier" name="reviewerComment" rows="4" placeholder="Tell other guests about your stay" required></textarea>
+
+                <button type="submit" class="review-submit-btn">Submit Review</button>
+            </form>
+        </div>
+
+        <h2 id="booking-section">Booking calendar</h2>
         <p>Select your preferred dates to request a booking:</p>
-        <div class="booking-calendar" data-month-offset="0" aria-label="Monthly booking calendar"></div>
         <div class="booking-selection">
             <div>Start: <span class="booking-start">Not selected</span></div>
             <div>End: <span class="booking-end">Not selected</span></div>
             <div>Nights: <span class="booking-nights">0</span></div>
         </div>
+        <div class="booking-calendar" data-month-offset="0" aria-label="Monthly booking calendar"></div>
         <form class="booking-details">
             <label for="first-name-atelier">First Name</label>
             <input type="text" id="first-name-atelier" name="firstName" required>
@@ -252,40 +303,8 @@
             <label for="notes-atelier">Additional Details</label>
             <textarea id="notes-atelier" name="notes" rows="3" placeholder="Tell us anything important about your stay"></textarea>
         </form>
-        <button class="booking-button" type="button" data-house="Atelier" disabled>Request Booking</button>
-        
-        <h2>Guest reviews</h2>
-        <div class="review-form-section">
-            <h3>Share your experience</h3>
-            <p><em>Only guests who have booked and stayed can leave a review. Please enter your booking ID from your confirmation email.</em></p>
-            <form class="review-form" id="review-form-atelier">
-                <label for="booking-id-atelier">Booking ID</label>
-                <input type="text" id="booking-id-atelier" name="bookingId" placeholder="e.g., 18da5ae2-27b0-43ea-b96e-776a259369c4" required>
 
-                <label for="reviewer-name-atelier">Your Name</label>
-                <input type="text" id="reviewer-name-atelier" name="reviewerName" required>
-
-                <label for="reviewer-rating-atelier">Rating</label>
-                <select id="reviewer-rating-atelier" name="reviewerRating" required>
-                    <option value="">Select a rating</option>
-                    <option value="5">5 Stars - Excellent</option>
-                    <option value="4">4 Stars - Very Good</option>
-                    <option value="3">3 Stars - Good</option>
-                    <option value="2">2 Stars - Fair</option>
-                    <option value="1">1 Star - Poor</option>
-                </select>
-
-                <label for="reviewer-comment-atelier">Your Review</label>
-                <textarea id="reviewer-comment-atelier" name="reviewerComment" rows="4" placeholder="Tell other guests about your stay" required></textarea>
-
-                <button type="submit" class="review-submit-btn">Submit Review</button>
-            </form>
-        </div>
-
-        <div class="reviews-section">
-        </div>
-
-        <p><a href="#">Back to Houses</a></p>
+        <p><a href="#top" class="top-link">Top</a></p>
     </main>
     <footer>
         <p>&copy; 2026 PiriHub. All rights reserved.</p>

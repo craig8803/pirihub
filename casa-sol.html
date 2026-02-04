@@ -8,11 +8,14 @@
 </head>
 <body>
     <header>
-        <nav>
+        <button id="menu-toggle" class="menu-toggle" aria-label="Toggle navigation menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav id="nav-menu" class="nav-menu">
             <ul>
-                <li><a href="index.html"><img src="img/logo.png" alt="PiriHub Logo" style="height: 180px;"></a></li>
-                <li><a href="pirenopolis.html">pirenópolis</a></li>
-                <li><a href="coliving.html">coliving</a></li>
+                <li><a href="index.html"><img src="img/logo.png" alt="PiriHub Logo" class="logo"></a></li>
                 <li class="dropdown">
                     <a href="#">houses</a>
                     <ul class="dropdown-menu">
@@ -22,12 +25,29 @@
                         <li><a href="mini-casa.html">Mini Casa</a></li>
                     </ul>
                 </li>
+                <li><a href="pirenopolis.html">pirenópolis</a></li>
+                <li><a href="coliving.html">coliving</a></li>
                 <li><a href="services.html">services</a></li>
             </ul>
         </nav>
     </header>
-    <main>
-        <h1>Casa Sol</h1>
+    <main id="top">
+        <div class="page-header">
+            <div>
+                <h1>Casa Sol</h1>
+                <span class="property-badge badge-remote-work">Solo or Couples</span>
+            </div>
+            <div class="header-buttons">
+                <a href="#reviews-section" class="see-reviews-btn">See Reviews</a>
+                <a href="#add-review-section" class="add-review-btn">Add Review</a>
+                <a href="#booking-section" class="book-now-btn">Book Now</a>
+            </div>
+        </div>
+        
+        <div class="best-for">
+            <h3>Best For</h3>
+            <p>Solo travelers, couples, and remote workers seeking a quiet, focused environment with minimal distractions and maximum productivity.</p>
+        </div>
         <p>Located in a lush valley, ideal for nature lovers.</p>
         <p>Casa Sol offers the ultimate escape into nature. Surrounded by greenery and natural beauty, this property is perfect for those who want to disconnect from the hustle and bustle while maintaining a vibrant community experience.</p>
         
@@ -40,14 +60,45 @@
             <li>Peaceful, nature-focused community</li>
         </ul>
 
-        <h2>Booking calendar</h2>
+        <h2>Guest reviews</h2>
+        <div class="reviews-section" id="reviews-section">
+        </div>
+
+        <h2>Share your experience</h2>
+        <div class="review-form-section" id="add-review-section">
+            <p><em>Only guests who have booked and stayed can leave a review. Please enter your booking ID from your confirmation email.</em></p>
+            <form class="review-form" id="review-form-sol">
+                <label for="booking-id-sol">Booking ID</label>
+                <input type="text" id="booking-id-sol" name="bookingId" placeholder="e.g., 18da5ae2-27b0-43ea-b96e-776a259369c4" required>
+
+                <label for="reviewer-name-sol">Your Name</label>
+                <input type="text" id="reviewer-name-sol" name="reviewerName" required>
+
+                <label for="reviewer-rating-sol">Rating</label>
+                <select id="reviewer-rating-sol" name="reviewerRating" required>
+                    <option value="">Select a rating</option>
+                    <option value="5">5 Stars - Excellent</option>
+                    <option value="4">4 Stars - Very Good</option>
+                    <option value="3">3 Stars - Good</option>
+                    <option value="2">2 Stars - Fair</option>
+                    <option value="1">1 Star - Poor</option>
+                </select>
+
+                <label for="reviewer-comment-sol">Your Review</label>
+                <textarea id="reviewer-comment-sol" name="reviewerComment" rows="4" placeholder="Tell other guests about your stay" required></textarea>
+
+                <button type="submit" class="review-submit-btn">Submit Review</button>
+            </form>
+        </div>
+
+        <h2 id="booking-section">Booking calendar</h2>
         <p>Select your preferred dates to request a booking:</p>
-        <div class="booking-calendar" data-month-offset="0" aria-label="Monthly booking calendar"></div>
         <div class="booking-selection">
             <div>Start: <span class="booking-start">Not selected</span></div>
             <div>End: <span class="booking-end">Not selected</span></div>
             <div>Nights: <span class="booking-nights">0</span></div>
         </div>
+        <div class="booking-calendar" data-month-offset="0" aria-label="Monthly booking calendar"></div>
         <form class="booking-details">
             <label for="first-name-sol">First Name</label>
             <input type="text" id="first-name-sol" name="firstName" required>
@@ -249,39 +300,8 @@
             <textarea id="notes-sol" name="notes" rows="3" placeholder="Tell us anything important about your stay"></textarea>
         </form>
         <button class="booking-button" type="button" data-house="Casa Sol" disabled>Request Booking</button>
-        
-        <h2>Guest reviews</h2>
-        <div class="review-form-section">
-            <h3>Share your experience</h3>
-            <p><em>Only guests who have booked and stayed can leave a review. Please enter your booking ID from your confirmation email.</em></p>
-            <form class="review-form" id="review-form-sol">
-                <label for="booking-id-sol">Booking ID</label>
-                <input type="text" id="booking-id-sol" name="bookingId" placeholder="e.g., 18da5ae2-27b0-43ea-b96e-776a259369c4" required>
 
-                <label for="reviewer-name-sol">Your Name</label>
-                <input type="text" id="reviewer-name-sol" name="reviewerName" required>
-
-                <label for="reviewer-rating-sol">Rating</label>
-                <select id="reviewer-rating-sol" name="reviewerRating" required>
-                    <option value="">Select a rating</option>
-                    <option value="5">5 Stars - Excellent</option>
-                    <option value="4">4 Stars - Very Good</option>
-                    <option value="3">3 Stars - Good</option>
-                    <option value="2">2 Stars - Fair</option>
-                    <option value="1">1 Star - Poor</option>
-                </select>
-
-                <label for="reviewer-comment-sol">Your Review</label>
-                <textarea id="reviewer-comment-sol" name="reviewerComment" rows="4" placeholder="Tell other guests about your stay" required></textarea>
-
-                <button type="submit" class="review-submit-btn">Submit Review</button>
-            </form>
-        </div>
-
-        <div class="reviews-section">
-        </div>
-
-        <p><a href="#">Back to Houses</a></p>
+        <p><a href="#top" class="top-link">Top</a></p>
     </main>
     <footer>
         <p>&copy; 2026 PiriHub. All rights reserved.</p>
