@@ -49,18 +49,18 @@
             <div>Nights: <span class="booking-nights">0</span></div>
         </div>
         <form class="booking-details">
-            <label for="first-name-vale">First Name</label>
-            <input type="text" id="first-name-vale" name="firstName" required>
+            <label for="first-name-sol">First Name</label>
+            <input type="text" id="first-name-sol" name="firstName" required>
 
-            <label for="last-name-vale">Last Name</label>
-            <input type="text" id="last-name-vale" name="lastName" required>
+            <label for="last-name-sol">Last Name</label>
+            <input type="text" id="last-name-sol" name="lastName" required>
 
-            <label for="email-vale">Email</label>
-            <input type="email" id="email-vale" name="email" required>
+            <label for="email-sol">Email</label>
+            <input type="email" id="email-sol" name="email" required>
             <span class="email-error" style="display: none;">Please enter a valid email address</span>
 
-            <label for="country-vale">Country</label>
-            <select id="country-vale" name="country" required>
+            <label for="country-sol">Country</label>
+            <select id="country-sol" name="country" required>
                 <option value="">Select country</option>
 <option value="+93">Afghanistan (+93)</option>
 <option value="+355">Albania (+355)</option>
@@ -238,15 +238,15 @@
 <option value="+263">Zimbabwe (+263)</option>
             </select>
 
-            <label for="phone-vale">Phone</label>
-            <input type="tel" id="phone-vale" name="phone" placeholder="Enter phone without country code" required>
+            <label for="phone-sol">Phone</label>
+            <input type="tel" id="phone-sol" name="phone" placeholder="Enter phone without country code" required>
             <span class="phone-error">Please enter phone number without country code (no +, 00, or prefixes)</span>
 
-            <label for="guests-vale">Number of Guests</label>
-            <input type="number" id="guests-vale" name="guests" min="1" max="10" required>
+            <label for="guests-sol">Number of Guests</label>
+            <input type="number" id="guests-sol" name="guests" min="1" max="10" required>
 
-            <label for="notes-vale">Additional Details</label>
-            <textarea id="notes-vale" name="notes" rows="3" placeholder="Tell us anything important about your stay"></textarea>
+            <label for="notes-sol">Additional Details</label>
+            <textarea id="notes-sol" name="notes" rows="3" placeholder="Tell us anything important about your stay"></textarea>
         </form>
         <button class="booking-button" type="button" data-house="Casa Sol" disabled>Request Booking</button>
         
@@ -254,15 +254,15 @@
         <div class="review-form-section">
             <h3>Share your experience</h3>
             <p><em>Only guests who have booked and stayed can leave a review. Please enter your booking ID from your confirmation email.</em></p>
-            <form class="review-form" id="review-form-vale">
-                <label for="booking-id-vale">Booking ID</label>
-                <input type="text" id="booking-id-vale" name="bookingId" placeholder="e.g., 18da5ae2-27b0-43ea-b96e-776a259369c4" required>
+            <form class="review-form" id="review-form-sol">
+                <label for="booking-id-sol">Booking ID</label>
+                <input type="text" id="booking-id-sol" name="bookingId" placeholder="e.g., 18da5ae2-27b0-43ea-b96e-776a259369c4" required>
 
-                <label for="reviewer-name-vale">Your Name</label>
-                <input type="text" id="reviewer-name-vale" name="reviewerName" required>
+                <label for="reviewer-name-sol">Your Name</label>
+                <input type="text" id="reviewer-name-sol" name="reviewerName" required>
 
-                <label for="reviewer-rating-vale">Rating</label>
-                <select id="reviewer-rating-vale" name="reviewerRating" required>
+                <label for="reviewer-rating-sol">Rating</label>
+                <select id="reviewer-rating-sol" name="reviewerRating" required>
                     <option value="">Select a rating</option>
                     <option value="5">5 Stars - Excellent</option>
                     <option value="4">4 Stars - Very Good</option>
@@ -271,8 +271,8 @@
                     <option value="1">1 Star - Poor</option>
                 </select>
 
-                <label for="reviewer-comment-vale">Your Review</label>
-                <textarea id="reviewer-comment-vale" name="reviewerComment" rows="4" placeholder="Tell other guests about your stay" required></textarea>
+                <label for="reviewer-comment-sol">Your Review</label>
+                <textarea id="reviewer-comment-sol" name="reviewerComment" rows="4" placeholder="Tell other guests about your stay" required></textarea>
 
                 <button type="submit" class="review-submit-btn">Submit Review</button>
             </form>

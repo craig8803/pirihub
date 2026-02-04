@@ -341,4 +341,4 @@ def get_reviews(house_id):
         return jsonify({'error': 'Failed to fetch reviews'}), 500
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5001)
+    app.run(debug=False, use_reloader=False, port=5001)
