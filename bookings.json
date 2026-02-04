@@ -162,6 +162,33 @@
           "rateDate": "2026-02-04T15:22:34.244007"
         }
       }
+    },
+    {
+      "id": "eb1926a2-226c-46d7-a892-1b6180ce51ed",
+      "createdAt": "2026-02-04T15:37:21.216373",
+      "firstName": "Jennifer",
+      "lastName": "Connolly",
+      "email": "craig_halliday@mac.com",
+      "country": "+41",
+      "phone": "782342229",
+      "guests": "6",
+      "startDate": "2026-03-02",
+      "endDate": "2026-03-28",
+      "house": "mini-casa",
+      "nights": 26,
+      "notes": "",
+      "currency": "USD",
+      "status": "pending",
+      "pricing": {
+        "totalUSD": 7800,
+        "depositUSD": 3900.0,
+        "USD": {
+          "total": 7800.0,
+          "deposit": 3900.0,
+          "exchangeRate": 1.0,
+          "rateDate": "2026-02-04T15:37:21.216396"
+        }
+      }
     }
   ]
 }
