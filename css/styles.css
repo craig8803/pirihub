@@ -101,6 +101,10 @@ footer {
     background-color: #fff;
 }
 
+.booking-calendar:has(.year-grid) {
+    max-width: 100%;
+}
+
 .calendar-header {
     display: flex;
     align-items: center;
@@ -108,6 +112,7 @@ footer {
     padding: 0.75rem;
     font-weight: 700;
     background-color: #f5f5f5;
+    gap: 0.5rem;
 }
 
 .calendar-title {
@@ -125,6 +130,22 @@ footer {
 
 .calendar-nav:hover {
     opacity: 0.7;
+}
+
+.calendar-view-toggle {
+    background: #ffb700;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.calendar-view-toggle:hover {
+    background: #e6a300;
 }
 
 .calendar-grid {
@@ -179,6 +200,98 @@ footer {
 
 .calendar-day.selected-range {
     background-color: #ffe7a3;
+}
+
+/* Year View Styles */
+.year-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.year-month {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.year-month-name {
+    background-color: #f5f5f5;
+    padding: 0.5rem;
+    text-align: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.year-month-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+    background-color: #eee;
+}
+
+.year-day {
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.year-day.empty {
+    background-color: #fafafa;
+    cursor: default;
+}
+
+.year-day:hover:not(.blocked):not(.empty) {
+    background-color: #ffe7a3;
+}
+
+.year-day.blocked {
+    background-color: #f0f0f0;
+    background-image: linear-gradient(45deg, transparent 48%, #ddd 48%, #ddd 52%, transparent 52%);
+    color: #999;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.year-day.blocked-airbnb {
+    border: 1px solid #d63031;
+}
+
+.year-day.blocked-booking {
+    border: 1px solid #0984e3;
+}
+
+.year-day.selected {
+    background-color: #ffb700;
+    color: #fff;
+    font-weight: 700;
+}
+
+.year-day.selected-range {
+    background-color: #ffe7a3;
+}
+
+@media (max-width: 768px) {
+    .year-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+        padding: 0.5rem;
+    }
+    
+    .year-day {
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .year-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .booking-selection {

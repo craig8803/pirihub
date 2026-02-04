@@ -87,21 +87,191 @@ function renderBookingCalendars() {
         return;
     }
 
-    const weekdayLabels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-
     calendars.forEach((calendar) => {
-        const offset = parseInt(calendar.dataset.monthOffset || '0', 10);
-        const today = new Date();
-        const baseDate = new Date(today.getFullYear(), today.getMonth() + offset, 1);
-        const year = baseDate.getFullYear();
-        const month = baseDate.getMonth();
-        const firstDay = new Date(year, month, 1);
-        const lastDay = new Date(year, month + 1, 0);
+        const viewMode = calendar.dataset.viewMode || 'month';
+        
+        if (viewMode === 'year') {
+            renderYearView(calendar);
+        } else {
+            renderMonthView(calendar);
+        }
+    });
+
+    attachCalendarEventListeners();
+}
+
+function renderMonthView(calendar) {
+    const weekdayLabels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const offset = parseInt(calendar.dataset.monthOffset || '0', 10);
+    const today = new Date();
+    const baseDate = new Date(today.getFullYear(), today.getMonth() + offset, 1);
+    const year = baseDate.getFullYear();
+    const month = baseDate.getMonth();
+    const firstDay = new Date(year, month, 1);
+    const lastDay = new Date(year, month + 1, 0);
+    const startDayIndex = firstDay.getDay();
+    const totalDays = lastDay.getDate();
+    const monthName = firstDay.toLocaleString('default', { month: 'long' });
+
+    // Get house ID for checking blocked dates
+    const wrapper = calendar.parentElement;
+    let houseId = null;
+    if (wrapper && wrapper.querySelector('.booking-button')) {
+        const houseName = wrapper.querySelector('.booking-button').dataset.house;
+        for (const key in houses) {
+            if (houses[key].name === houseName) {
+                houseId = houses[key].id;
+                break;
+            }
+        }
+    }
+
+    let calendarHtml = '<div class="calendar-header">';
+    calendarHtml += '<button class="calendar-nav" data-direction="prev" aria-label="Previous month">&#9664;</button>';
+    calendarHtml += '<span class="calendar-title">' + monthName + ' ' + year + '</span>';
+    calendarHtml += '<button class="calendar-nav" data-direction="next" aria-label="Next month">&#9654;</button>';
+    calendarHtml += '<button class="calendar-view-toggle" data-view="year" aria-label="Year view">Year</button>';
+    calendarHtml += '</div>';
+    calendarHtml += '<div class="calendar-grid">';
+
+    weekdayLabels.forEach((label) => {
+        calendarHtml += '<div class="calendar-cell calendar-weekday">' + label + '</div>';
+    });
+
+    for (let i = 0; i < startDayIndex; i += 1) {
+        calendarHtml += '<div class="calendar-cell calendar-empty"></div>';
+    }
+
+    const selectedStart = calendar.dataset.startDate || '';
+    const selectedEnd = calendar.dataset.endDate || '';
+
+    for (let day = 1; day <= totalDays; day += 1) {
+        const dateString = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+        let dayClass = 'calendar-cell calendar-day';
+
+        // Check if date is blocked and from which source
+        const blockInfo = getBlockedDateSource(dateString, houseId);
+        if (blockInfo.isBlocked) {
+            dayClass += ' blocked';
+            if (blockInfo.source === 'airbnb') {
+                dayClass += ' blocked-airbnb';
+            } else if (blockInfo.source === 'booking') {
+                dayClass += ' blocked-booking';
+            }
+        }
+
+        if (selectedStart === dateString) {
+            dayClass += ' selected-start';
+        }
+
+        if (selectedEnd === dateString) {
+            dayClass += ' selected-end';
+        }
+
+        if (selectedStart && selectedEnd) {
+            const dayDate = new Date(dateString);
+            const startDate = new Date(selectedStart);
+            const endDate = new Date(selectedEnd);
+            if (dayDate > startDate && dayDate < endDate) {
+                dayClass += ' selected-range';
+            }
+        }
+
+        calendarHtml += `<div class="${dayClass}" data-date="${dateString}">${day}</div>`;
+    }
+
+    calendarHtml += '</div>';
+    calendar.innerHTML = calendarHtml;
+}
+
+function renderYearView(calendar) {
+    const today = new Date();
+    const year = parseInt(calendar.dataset.yearOffset || today.getFullYear());
+    
+    // Get house ID
+    const wrapper = calendar.parentElement;
+    let houseId = null;
+    if (wrapper && wrapper.querySelector('.booking-button')) {
+        const houseName = wrapper.querySelector('.booking-button').dataset.house;
+        for (const key in houses) {
+            if (houses[key].name === houseName) {
+                houseId = houses[key].id;
+                break;
+            }
+        }
+    }
+
+    let calendarHtml = '<div class="calendar-header">';
+    calendarHtml += '<button class="calendar-nav" data-direction="prev" aria-label="Previous year">&#9664;</button>';
+    calendarHtml += '<span class="calendar-title">' + year + '</span>';
+    calendarHtml += '<button class="calendar-nav" data-direction="next" aria-label="Next year">&#9654;</button>';
+    calendarHtml += '<button class="calendar-view-toggle" data-view="month" aria-label="Month view">Month</button>';
+    calendarHtml += '</div>';
+    calendarHtml += '<div class="year-grid">';
+
+    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    
+    for (let monthIndex = 0; monthIndex < 12; monthIndex++) {
+        const firstDay = new Date(year, monthIndex, 1);
+        const lastDay = new Date(year, monthIndex + 1, 0);
         const startDayIndex = firstDay.getDay();
         const totalDays = lastDay.getDate();
-        const monthName = firstDay.toLocaleString('default', { month: 'long' });
+        
+        calendarHtml += '<div class="year-month">';
+        calendarHtml += '<div class="year-month-name">' + monthNames[monthIndex] + '</div>';
+        calendarHtml += '<div class="year-month-grid">';
+        
+        // Add empty cells for offset
+        for (let i = 0; i < startDayIndex; i++) {
+            calendarHtml += '<div class="year-day empty"></div>';
+        }
+        
+        // Add days
+        const selectedStart = calendar.dataset.startDate || '';
+        const selectedEnd = calendar.dataset.endDate || '';
+        
+        for (let day = 1; day <= totalDays; day++) {
+            const dateString = `${year}-${String(monthIndex + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+            let dayClass = 'year-day';
+            
+            const blockInfo = getBlockedDateSource(dateString, houseId);
+            if (blockInfo.isBlocked) {
+                dayClass += ' blocked';
+                if (blockInfo.source === 'airbnb') {
+                    dayClass += ' blocked-airbnb';
+                } else if (blockInfo.source === 'booking') {
+                    dayClass += ' blocked-booking';
+                }
+            }
+            
+            if (selectedStart === dateString || selectedEnd === dateString) {
+                dayClass += ' selected';
+            }
+            
+            if (selectedStart && selectedEnd) {
+                const dayDate = new Date(dateString);
+                const startDate = new Date(selectedStart);
+                const endDate = new Date(selectedEnd);
+                if (dayDate > startDate && dayDate < endDate) {
+                    dayClass += ' selected-range';
+                }
+            }
+            
+            calendarHtml += `<div class="${dayClass}" data-date="${dateString}">${day}</div>`;
+        }
+        
+        calendarHtml += '</div></div>';
+    }
 
-        // Get house ID for checking blocked dates
+    calendarHtml += '</div>';
+    calendar.innerHTML = calendarHtml;
+}
+
+function attachCalendarEventListeners() {
+    const calendars = document.querySelectorAll('.booking-calendar');
+    
+    calendars.forEach((calendar) => {
+        // Get house ID
         const wrapper = calendar.parentElement;
         let houseId = null;
         if (wrapper && wrapper.querySelector('.booking-button')) {
@@ -114,74 +284,39 @@ function renderBookingCalendars() {
             }
         }
 
-        let calendarHtml = '<div class="calendar-header">';
-        calendarHtml += '<button class="calendar-nav" data-direction="prev" aria-label="Previous month">&#9664;</button>';
-        calendarHtml += '<span class="calendar-title">' + monthName + ' ' + year + '</span>';
-        calendarHtml += '<button class="calendar-nav" data-direction="next" aria-label="Next month">&#9654;</button>';
-        calendarHtml += '</div>';
-        calendarHtml += '<div class="calendar-grid">';
-
-        weekdayLabels.forEach((label) => {
-            calendarHtml += '<div class="calendar-cell calendar-weekday">' + label + '</div>';
-        });
-
-        for (let i = 0; i < startDayIndex; i += 1) {
-            calendarHtml += '<div class="calendar-cell calendar-empty"></div>';
-        }
-
-        const selectedStart = calendar.dataset.startDate || '';
-        const selectedEnd = calendar.dataset.endDate || '';
-
-        for (let day = 1; day <= totalDays; day += 1) {
-            const dateString = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-            let dayClass = 'calendar-cell calendar-day';
-
-            // Check if date is blocked and from which source
-            const blockInfo = getBlockedDateSource(dateString, houseId);
-            if (blockInfo.isBlocked) {
-                dayClass += ' blocked';
-                if (blockInfo.source === 'airbnb') {
-                    dayClass += ' blocked-airbnb';
-                } else if (blockInfo.source === 'booking') {
-                    dayClass += ' blocked-booking';
-                }
-            }
-
-            if (selectedStart === dateString) {
-                dayClass += ' selected-start';
-            }
-
-            if (selectedEnd === dateString) {
-                dayClass += ' selected-end';
-            }
-
-            if (selectedStart && selectedEnd) {
-                const dayDate = new Date(dateString);
-                const startDate = new Date(selectedStart);
-                const endDate = new Date(selectedEnd);
-                if (dayDate > startDate && dayDate < endDate) {
-                    dayClass += ' selected-range';
-                }
-            }
-
-            calendarHtml += `<div class="${dayClass}" data-date="${dateString}">${day}</div>`;
-        }
-
-        calendarHtml += '</div>';
-        calendar.innerHTML = calendarHtml;
-
+        // Navigation buttons
         calendar.querySelectorAll('.calendar-nav').forEach((button) => {
             button.addEventListener('click', () => {
                 const direction = button.dataset.direction;
-                const currentOffset = parseInt(calendar.dataset.monthOffset || '0', 10);
-                calendar.dataset.monthOffset = direction === 'next' ? currentOffset + 1 : currentOffset - 1;
+                const viewMode = calendar.dataset.viewMode || 'month';
+                
+                if (viewMode === 'year') {
+                    const today = new Date();
+                    const currentYear = parseInt(calendar.dataset.yearOffset || today.getFullYear());
+                    calendar.dataset.yearOffset = direction === 'next' ? currentYear + 1 : currentYear - 1;
+                } else {
+                    const currentOffset = parseInt(calendar.dataset.monthOffset || '0', 10);
+                    calendar.dataset.monthOffset = direction === 'next' ? currentOffset + 1 : currentOffset - 1;
+                }
+                
                 renderBookingCalendars();
             });
         });
 
-        calendar.querySelectorAll('.calendar-day').forEach((cell) => {
+        // View toggle button
+        const viewToggle = calendar.querySelector('.calendar-view-toggle');
+        if (viewToggle) {
+            viewToggle.addEventListener('click', () => {
+                const newView = viewToggle.dataset.view;
+                calendar.dataset.viewMode = newView;
+                renderBookingCalendars();
+            });
+        }
+
+        // Day click handlers
+        calendar.querySelectorAll('.calendar-day, .year-day').forEach((cell) => {
             // Prevent interaction with blocked dates
-            if (cell.classList.contains('blocked')) {
+            if (cell.classList.contains('blocked') || cell.classList.contains('empty')) {
                 cell.style.pointerEvents = 'none';
                 return;
             }
