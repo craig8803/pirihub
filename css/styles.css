@@ -882,8 +882,13 @@ footer {
         align-items: center;
     }
 
+    .menu-toggle {
+        order: 2;
+    }
+
     .mobile-logo {
         display: block;
+        order: 1;
     }
 
     .mobile-logo .logo {
