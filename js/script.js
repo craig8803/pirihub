@@ -27,11 +27,14 @@ document.addEventListener('DOMContentLoaded', function() {
         const dropdowns = navMenu.querySelectorAll('.dropdown > a');
         dropdowns.forEach(dropdown => {
             dropdown.addEventListener('click', function(e) {
-                // On mobile (menu toggle visible), prevent navigation and toggle dropdown instead
+                // On mobile (menu toggle visible), first tap opens dropdown, second tap navigates
                 if (menuToggle && menuToggle.offsetParent !== null) {
-                    e.preventDefault();
                     const parentDropdown = this.parentElement;
-                    parentDropdown.classList.toggle('active');
+                    if (!parentDropdown.classList.contains('active')) {
+                        e.preventDefault();
+                        parentDropdown.classList.add('active');
+                    }
+                    // If already active, let the link navigate normally
                 }
                 // On desktop, let the link navigate normally
             });
