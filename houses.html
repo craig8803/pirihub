@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Houses - PiriHub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 </head>
 <body>
     <header>
@@ -17,7 +21,7 @@
             <ul>
                 <li><a href="index.html"><img src="img/logo.png" alt="PiriHub Logo" class="logo"></a></li>
                 <li class="dropdown">
-                    <a href="#">houses</a>
+                    <a href="houses.html">houses</a>
                     <ul class="dropdown-menu">
                         <li><a href="casa-matutina.html">Casa Matutina</a></li>
                         <li><a href="casa-atelier.html">Atelier</a></li>
@@ -28,62 +32,174 @@
                 <li><a href="pirenopolis.html">pirenópolis</a></li>
                 <li><a href="coliving.html">coliving</a></li>
                 <li><a href="services.html">services</a></li>
+                <li><a href="faq.html">faq</a></li>
             </ul>
         </nav>
     </header>
     <main>
-        <h1>Our Houses</h1>
-        <p style="font-size: 1.1rem; color: #555; margin-bottom: 2rem;">Choose the perfect space for your remote work lifestyle</p>
-        
+        <h1>Our houses</h1>
+        <p style="font-size: 1.1rem; color: #555; margin-bottom: 2rem;">Four properties in Pirenópolis, all hosted by Horayma — Airbnb Superhost with 11 years of experience.</p>
+
         <div class="property-grid">
             <div class="property-card">
                 <div class="property-header">
-                    <h2>Casa Matutina</h2>
-                    <span class="property-badge badge-coliving">Coliving Community</span>
+                    <h2>Casa Matutina Colonial</h2>
+                    <span class="property-badge badge-coliving">Historic Center · Up to 8 guests</span>
                 </div>
-                <p class="property-type">4 Bedrooms • Up to 8 Guests</p>
-                <p>A warm, character-filled house designed for remote worker communities. Features multiple work spaces, shared kitchen, pool, and plenty of room for meaningful connections.</p>
-                <p><strong>Best for:</strong> Coliving communities, group stays, and remote workers seeking vibrant social atmosphere</p>
-                <a href="casa-matutina.html" class="property-link">View Details →</a>
+                <p class="property-type">4 bedrooms · 3 bathrooms · 5.0 ★ (29 reviews)</p>
+                <p>The flagship property. A beautifully restored colonial house with a heated pool, jacuzzi, gourmet grill kitchen, and everything walkable. Best for group retreats and team offsites.</p>
+                <p><strong>Best for:</strong> Groups, team offsites, coliving stays</p>
+                <a href="casa-matutina.html" class="property-link">View details →</a>
             </div>
 
             <div class="property-card">
                 <div class="property-header">
-                    <h2>Atelier</h2>
-                    <span class="property-badge badge-remote-work">Solo or Couples</span>
+                    <h2>Atelier Aconchego</h2>
+                    <span class="property-badge badge-remote-work">Guesthouse · Up to 4 guests</span>
                 </div>
-                <p class="property-type">1 Bedroom • 1-2 Guests</p>
-                <p>A compact, thoughtfully designed retreat for solo travelers, couples, and remote workers. Quiet, comfortable, and perfectly suited for focused work and independent living.</p>
-                <p><strong>Best for:</strong> Solo travelers and couples seeking quiet, focused environment with minimal distractions</p>
-                <a href="casa-atelier.html" class="property-link">View Details →</a>
+                <p class="property-type">2 bedrooms · 1 bathroom · 5.0 ★ (4 reviews)</p>
+                <p>A calm, well-equipped guesthouse with air conditioning, private fitness room, and a quiet residential setting. Ideal for two remote workers sharing costs.</p>
+                <p><strong>Best for:</strong> Two workers traveling together, small teams</p>
+                <a href="casa-atelier.html" class="property-link">View details →</a>
             </div>
 
             <div class="property-card">
                 <div class="property-header">
-                    <h2>Casa Sol</h2>
-                    <span class="property-badge badge-remote-work">Solo or Couples</span>
+                    <h2>Casa Sol e Cachoeira</h2>
+                    <span class="property-badge badge-remote-work">Nature Reserve Edge · Up to 4 guests</span>
                 </div>
-                <p class="property-type">Intimate Space • 1-2 Guests</p>
-                <p>A peaceful, welcoming home perfect for solo travelers, couples, and remote workers. Quiet setting with reliable internet and comfortable work environment.</p>
-                <p><strong>Best for:</strong> Solo travelers and couples seeking a quiet, focused stay</p>
-                <a href="casa-sol.html" class="property-link">View Details →</a>
+                <p class="property-type">2 bedrooms · 2 bathrooms · New listing</p>
+                <p>A secluded nature retreat with a private waterfall and pool, 20–30 minutes from town. Best for nomads who want deep focus in a remarkable natural setting.</p>
+                <p><strong>Best for:</strong> Nature immersion, total privacy, car required</p>
+                <a href="casa-sol.html" class="property-link">View details →</a>
             </div>
 
             <div class="property-card">
                 <div class="property-header">
-                    <h2>Mini Casa</h2>
-                    <span class="property-badge badge-remote-work">Solo or Couples</span>
+                    <h2>Mini Casa Piri</h2>
+                    <span class="property-badge badge-remote-work">Vila Pompeu · Up to 4 guests</span>
                 </div>
-                <p class="property-type">Cozy Home • 1-2 Guests</p>
-                <p>A small, intimate property ideal for solo travelers and couples. All the essentials in a comfortable, distraction-free setting with high-speed internet.</p>
-                <p><strong>Best for:</strong> Solo travelers and couples seeking a quiet, focused stay</p>
-                <a href="mini-casa.html" class="property-link">View Details →</a>
+                <p class="property-type">1 bedroom · 1 bathroom · 5.0 ★ (8 reviews)</p>
+                <p>A smartly converted guesthouse with a dedicated desk, ergonomic chair, keypad self-check-in, and in-house gym. Everything a solo traveler or couple needs.</p>
+                <p><strong>Best for:</strong> Solo travelers, couples, focused remote work</p>
+                <a href="mini-casa.html" class="property-link">View details →</a>
             </div>
         </div>
+
+        <hr>
+
+        <h2>Comparison at a glance</h2>
+        <div class="comparison-table-wrapper">
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Mini Casa Piri</th>
+                        <th>Casa Matutina</th>
+                        <th>Atelier Aconchego</th>
+                        <th>Casa Sol</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>Guests</strong></td><td>Up to 4</td><td>Up to 8</td><td>Up to 4</td><td>Up to 4</td></tr>
+                    <tr><td><strong>Bedrooms</strong></td><td>1</td><td>4</td><td>2</td><td>2</td></tr>
+                    <tr><td><strong>Bathrooms</strong></td><td>1</td><td>3</td><td>1</td><td>2</td></tr>
+                    <tr><td><strong>Location</strong></td><td>Near center</td><td>Historic Center</td><td>Residential</td><td>Nature / Remote</td></tr>
+                    <tr><td><strong>Pool</strong></td><td>—</td><td>✓ heated + jacuzzi</td><td>—</td><td>✓ + waterfall</td></tr>
+                    <tr><td><strong>Workspace</strong></td><td>✓ dedicated desk</td><td>—</td><td>—</td><td>—</td></tr>
+                    <tr><td><strong>Fitness</strong></td><td>✓ in-house gym</td><td>—</td><td>✓ in-room</td><td>—</td></tr>
+                    <tr><td><strong>A/C</strong></td><td>✓</td><td>✓ all rooms</td><td>✓</td><td>—</td></tr>
+                    <tr><td><strong>Self-check-in</strong></td><td>✓ keypad</td><td>✓ keypad</td><td>—</td><td>—</td></tr>
+                    <tr><td><strong>Pets</strong></td><td>✓</td><td>—</td><td>✓</td><td>✓</td></tr>
+                    <tr><td><strong>Car needed</strong></td><td>No</td><td>No</td><td>No</td><td>Yes</td></tr>
+                    <tr><td><strong>Reviews</strong></td><td>5.0 ★ (8)</td><td>5.0 ★ (29)</td><td>5.0 ★ (4)</td><td>New</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr>
+
+        <h2>Where are the properties?</h2>
+        <p>Three properties are in or close to the historic center of Pirenópolis. Casa Sol e Cachoeira is in a rural area 20–30 minutes away, at the edge of the nature reserve.</p>
+        <div id="properties-map" style="height: 420px; border-radius: 6px; border: 1px solid #e0e0e0; margin: 1rem 0 2rem;"></div>
     </main>
     <footer>
         <p>&copy; 2026 PiriHub. All rights reserved.</p>
     </footer>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="js/script.js"></script>
+    <script>
+        // Interactive property map using OpenStreetMap / Leaflet
+        var map = L.map('properties-map').setView([-15.848, -48.958], 13);
+
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        var properties = [
+            {
+                name: 'Casa Matutina Colonial',
+                lat: -15.852843789879115,
+                lng: -48.95765495280911,
+                description: 'Historic House · Up to 8 guests · 5.0 ★ (29 reviews)',
+                url: 'casa-matutina.html'
+            },
+            {
+                name: 'Mini Casa Piri',
+                lat: -15.843081366469313,
+                lng: -48.96317417096173,
+                description: 'Tiny House · Up to 4 guests · 5.0 ★ (8 reviews)',
+                url: 'mini-casa.html'
+            },
+            {
+                name: 'Atelier Aconchego',
+                lat: -15.842877,
+                lng: -48.962942,
+                description: 'Guesthouse · Up to 4 guests · 5.0 ★ (4 reviews)',
+                url: 'casa-atelier.html'
+            },
+            {
+                name: 'Casa Sol e Cachoeira',
+                lat: -15.825735,
+                lng: -48.893589,
+                description: 'Private House · Up to 4 guests · Private waterfall',
+                url: 'casa-sol.html'
+            }
+        ];
+
+        properties.forEach(function(p) {
+            var circle = L.circleMarker([p.lat, p.lng], {
+                radius: 8,
+                color: '#c1440e',
+                fillColor: '#c1440e',
+                fillOpacity: 0.8,
+                weight: 2
+            }).addTo(map);
+
+            // Separate the two close labels so they don't overlap
+            var tooltipDir = 'top';
+            var tooltipOffset = [0, -10];
+            if (p.name === 'Mini Casa Piri') {
+                tooltipDir = 'left';
+                tooltipOffset = [-10, 0];
+            } else if (p.name === 'Atelier Aconchego') {
+                tooltipDir = 'right';
+                tooltipOffset = [10, 0];
+            }
+
+            circle.bindTooltip(p.name, {
+                permanent: true,
+                direction: tooltipDir,
+                offset: tooltipOffset,
+                className: 'map-label'
+            });
+            circle.bindPopup(
+                '<strong><a href="' + p.url + '">' + p.name + '</a></strong><br>' +
+                p.description +
+                '<br><a href="' + p.url + '">View details →</a>'
+            );
+        });
+    </script>
 </body>
 </html>

@@ -1,23 +1,35 @@
+:root {
+    --sand:       #f7f3ed;
+    --parchment:  #ede8de;
+    --terracotta: #c1440e;
+    --forest:     #2d5a3d;
+    --text:       #2c2416;
+    --text-light: #6b5d4f;
+    --border:     #ddd6cc;
+    --white:      #ffffff;
+}
+
 html {
     scroll-behavior: smooth;
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Inter', Arial, sans-serif;
     margin: 0;
     padding: 0;
     line-height: 1.6;
-    background-color: white;
-    color: black;
+    background-color: var(--sand);
+    color: var(--text);
 }
 
 header {
-    background-color: white;
-    color: black;
-    padding: 1rem;
+    background-color: var(--white);
+    color: var(--text);
+    padding: 1rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-bottom: 1px solid var(--border);
 }
 
 .menu-toggle {
@@ -33,7 +45,7 @@ header {
 .menu-toggle span {
     width: 25px;
     height: 3px;
-    background-color: black;
+    background-color: var(--text);
     transition: all 0.3s ease;
     border-radius: 2px;
 }
@@ -77,44 +89,42 @@ nav > ul > li:nth-child(1) {
 nav > ul > li:nth-child(2),
 nav > ul > li:nth-child(3),
 nav > ul > li:nth-child(4),
-nav > ul > li:nth-child(5) {
+nav > ul > li:nth-child(5),
+nav > ul > li:nth-child(6) {
     padding: 0.5rem 1rem;
     border-radius: 8px;
     background: transparent;
 }
 
 nav a {
-    color: black;
+    color: var(--text-light);
     text-decoration: none;
     font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
 }
 
 nav > ul > li:nth-child(1) > a {
-    color: #d63031;
+    color: var(--terracotta);
 }
 
-nav > ul > li:nth-child(2) > a {
-    color: #44a08d;
-}
-
-nav > ul > li:nth-child(3) > a {
-    color: #ff9800;
-}
-
-nav > ul > li:nth-child(4) > a {
-    color: #0984e3;
-}
-
-nav > ul > li:nth-child(5) > a {
-    color: #0984e3;
+nav > ul > li:nth-child(2) > a,
+nav > ul > li:nth-child(3) > a,
+nav > ul > li:nth-child(4) > a,
+nav > ul > li:nth-child(5) > a,
+nav > ul > li:nth-child(6) > a {
+    color: var(--text-light);
 }
 
 nav a:hover {
-    opacity: 0.9;
+    color: var(--terracotta);
+    opacity: 1;
 }
 
-h1, h2 {
-    color: black;
+h1, h2, h3 {
+    font-family: 'Lora', Georgia, serif;
+    color: var(--text);
+    line-height: 1.3;
 }
 
 .page-header {
@@ -138,26 +148,26 @@ h1, h2 {
 }
 
 .badge-coliving {
-    background-color: #e8f4f8;
-    color: #0984e3;
+    background-color: #e4ede8;
+    color: var(--forest);
 }
 
 .badge-remote-work {
-    background-color: #e8f5e9;
-    color: #27ae60;
+    background-color: #fdf0eb;
+    color: var(--terracotta);
 }
 
 .best-for {
-    background-color: #f5f5f5;
+    background-color: var(--parchment);
     padding: 1rem;
-    border-left: 4px solid #0984e3;
+    border-left: 4px solid var(--terracotta);
     margin: 1.5rem 0;
     border-radius: 4px;
 }
 
 .best-for h3 {
     margin-top: 0;
-    color: #0984e3;
+    color: var(--terracotta);
     font-size: 1rem;
 }
 
@@ -173,7 +183,7 @@ h1, h2 {
 
 .book-now-btn {
     display: inline-block;
-    background-color: #d64e89;
+    background-color: var(--terracotta);
     color: #fff;
     padding: 0.4rem 0.8rem;
     border-radius: 6px;
@@ -185,7 +195,7 @@ h1, h2 {
 }
 
 .book-now-btn:hover {
-    background-color: #e6a300;
+    background-color: #a53a0c;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
@@ -196,7 +206,7 @@ h1, h2 {
 
 .see-reviews-btn {
     display: inline-block;
-    background-color: #0984e3;
+    background-color: var(--forest);
     color: #fff;
     padding: 0.4rem 0.8rem;
     border-radius: 6px;
@@ -208,7 +218,7 @@ h1, h2 {
 }
 
 .see-reviews-btn:hover {
-    background-color: #0770c4;
+    background-color: #244a32;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
@@ -219,8 +229,9 @@ h1, h2 {
 
 .add-review-btn {
     display: inline-block;
-    background-color: #27ae60;
-    color: #fff;
+    background-color: transparent;
+    color: var(--forest);
+    border: 2px solid var(--forest);
     padding: 0.4rem 0.8rem;
     border-radius: 6px;
     text-decoration: none;
@@ -231,7 +242,8 @@ h1, h2 {
 }
 
 .add-review-btn:hover {
-    background-color: #229954;
+    background-color: var(--forest);
+    color: #fff;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
@@ -272,11 +284,11 @@ h1, h2 {
 }
 
 .property-card {
-    background-color: #fff;
-    border: 1px solid #e0e0e0;
+    background-color: var(--white);
+    border: 1px solid var(--border);
     border-radius: 8px;
     padding: 1.5rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     transition: box-shadow 0.2s, transform 0.2s;
 }
 
@@ -292,7 +304,7 @@ h1, h2 {
 .property-header h2 {
     margin: 0 0 0.5rem 0;
     font-size: 1.5rem;
-    color: #333;
+    color: var(--text);
 }
 
 .property-type {
@@ -311,7 +323,7 @@ h1, h2 {
 
 .property-link {
     display: inline-block;
-    color: #0984e3;
+    color: var(--terracotta);
     text-decoration: none;
     font-weight: 600;
     margin-top: 1rem;
@@ -319,7 +331,7 @@ h1, h2 {
 }
 
 .property-link:hover {
-    color: #0770c4;
+    color: #a53a0c;
 }
 
 main {
@@ -330,13 +342,14 @@ main {
 }
 
 footer {
-    background-color: white;
-    color: black;
+    background-color: var(--text);
+    color: var(--sand);
     text-align: center;
     padding: 1rem;
     position: fixed;
     bottom: 0;
     width: 100%;
+    z-index: 2000;
 }
 
 #house-select {
@@ -367,7 +380,7 @@ footer {
     justify-content: space-between;
     padding: 0.75rem;
     font-weight: 700;
-    background-color: #f5f5f5;
+    background-color: var(--parchment);
     gap: 0.5rem;
 }
 
@@ -389,7 +402,7 @@ footer {
 }
 
 .calendar-view-toggle {
-    background: #d64e89;
+    background: var(--terracotta);
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -401,7 +414,7 @@ footer {
 }
 
 .calendar-view-toggle:hover {
-    background: #e6a300;
+    background: #a53a0c;
 }
 
 .calendar-grid {
@@ -449,13 +462,13 @@ footer {
 
 .calendar-day.selected-start,
 .calendar-day.selected-end {
-    background-color: #d64e89;
+    background-color: var(--terracotta);
     color: #fff;
     font-weight: 700;
 }
 
 .calendar-day.selected-range {
-    background-color: #f5c9d9;
+    background-color: #f2c4b0;
 }
 
 /* Year View Styles */
@@ -523,13 +536,13 @@ footer {
 }
 
 .year-day.selected {
-    background-color: #d64e89;
+    background-color: var(--terracotta);
     color: #fff;
     font-weight: 700;
 }
 
 .year-day.selected-range {
-    background-color: #f5c9d9;
+    background-color: #f2c4b0;
 }
 
 @media (max-width: 768px) {
@@ -601,7 +614,7 @@ footer {
 .booking-button {
     margin-top: 1rem;
     padding: 0.6rem 1rem;
-    background-color: #4ecdc4;
+    background-color: var(--terracotta);
     color: #fff;
     border: none;
     border-radius: 6px;
@@ -629,14 +642,14 @@ footer {
 .review-form-section {
     margin: 1.5rem 0;
     padding: 1.5rem;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border);
     border-radius: 8px;
-    background-color: #f9f9f9;
+    background-color: var(--parchment);
 }
 
 .review-form-section h3 {
     margin-top: 0;
-    color: #333;
+    color: var(--text);
 }
 
 .review-form {
@@ -662,7 +675,7 @@ footer {
 .review-submit-btn {
     margin-top: 0.5rem;
     padding: 0.6rem 1rem;
-    background-color: #44a08d;
+    background-color: var(--forest);
     color: #fff;
     border: none;
     border-radius: 6px;
@@ -676,10 +689,10 @@ footer {
 }
 
 .review {
-    border: 1px solid #eee;
+    border: 1px solid var(--border);
     border-radius: 8px;
     padding: 1rem;
-    background-color: #fafafa;
+    background-color: var(--white);
     margin-bottom: 1rem;
 }
 
@@ -727,15 +740,17 @@ footer {
 .dropdown-menu {
     display: none;
     position: absolute;
-    background-color: white;
+    background-color: var(--white);
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.12);
     padding: 12px 16px;
     z-index: 1;
     list-style: none;
     margin: 0;
     top: 100%;
     left: 0;
+    border: 1px solid var(--border);
+    border-radius: 4px;
 }
 
 .dropdown-menu li {
@@ -743,7 +758,7 @@ footer {
 }
 
 .dropdown-menu a {
-    color: black;
+    color: var(--text-light);
     text-decoration: none;
     display: block;
     font-weight: normal;
@@ -789,8 +804,8 @@ footer {
 .explore-card {
     display: block;
     padding: 1.5rem;
-    background: white;
-    border: 2px solid #f0f0f0;
+    background: var(--white);
+    border: 2px solid var(--border);
     border-radius: 8px;
     text-decoration: none;
     color: inherit;
@@ -805,7 +820,7 @@ footer {
 
 .explore-card h3 {
     margin: 0 0 0.5rem 0;
-    color: #0984e3;
+    color: var(--terracotta);
     font-size: 1.2rem;
 }
 
@@ -815,40 +830,16 @@ footer {
     color: #666;
 }
 
-.explore-card.houses h3 {
-    color: #d63031;
-}
-
-.explore-card.houses:hover {
-    border-color: #d63031;
-    box-shadow: 0 4px 12px rgba(214, 48, 49, 0.15);
-}
-
-.explore-card.coliving h3 {
-    color: #ff9800;
-}
-
-.explore-card.coliving:hover {
-    border-color: #ff9800;
-    box-shadow: 0 4px 12px rgba(255, 152, 0, 0.15);
-}
-
-.explore-card.pirenopolis h3 {
-    color: #44a08d;
-}
-
-.explore-card.pirenopolis:hover {
-    border-color: #44a08d;
-    box-shadow: 0 4px 12px rgba(68, 160, 141, 0.15);
-}
-
+.explore-card.houses h3,
+.explore-card.coliving h3,
+.explore-card.pirenopolis h3,
 .explore-card.services h3 {
-    color: #0984e3;
+    color: var(--terracotta);
 }
 
-.explore-card.services:hover {
-    border-color: #0984e3;
-    box-shadow: 0 4px 12px rgba(9, 132, 227, 0.15);
+.explore-card:hover {
+    border-color: var(--terracotta);
+    box-shadow: 0 4px 12px rgba(193, 68, 14, 0.15);
 }
 
 /* Mobile Responsive Design */
@@ -896,8 +887,8 @@ footer {
         position: absolute;
         top: 70px;
         left: 0;
-        background-color: white;
-        border-bottom: 1px solid #eee;
+        background-color: var(--white);
+        border-bottom: 1px solid var(--border);
         z-index: 1000;
     }
     
@@ -924,10 +915,11 @@ footer {
         position: static;
         display: none;
         box-shadow: none;
-        background: #f9f9f9;
+        background: var(--parchment);
         flex-direction: column;
         margin: 0;
         padding: 0;
+        border: none;
     }
     
     .dropdown-menu li {
@@ -1266,4 +1258,145 @@ footer {
     .review-form select {
         font-size: 0.9rem;
     }
+}
+
+/* ── Property page additions ── */
+.property-rating {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+    margin: 0.5rem 0 1rem;
+}
+
+blockquote {
+    border-left: 4px solid var(--terracotta);
+    margin: 1rem 0;
+    padding: 0.75rem 1rem;
+    background: var(--parchment);
+    font-style: italic;
+    color: var(--text-light);
+}
+
+/* ── Photo gallery ── */
+.photo-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    margin: 1.5rem 0;
+}
+
+.photo-gallery img:first-child {
+    grid-column: 1 / -1;
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+}
+
+.photo-gallery img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+/* Full-size gallery — shows images uncropped in original ratio */
+.photo-gallery--natural {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 0.75rem;
+    margin: 1.5rem 0;
+}
+
+.photo-gallery--natural img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    display: block;
+}
+
+/* Piri town gallery: portrait photos top row, 1 landscape full-width below */
+.photo-gallery--piri {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    margin: 1.5rem 0;
+}
+
+.photo-gallery--piri img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    display: block;
+}
+
+.photo-gallery--piri img.gallery-wide {
+    grid-column: 1 / -1;
+}
+
+/* ── Comparison table ── */
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+}
+
+.comparison-table th,
+.comparison-table td {
+    border: 1px solid #ddd;
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+}
+
+.comparison-table th {
+    background: #f5f5f5;
+    font-weight: 700;
+}
+
+.comparison-table tbody tr:nth-child(even) {
+    background: #fafafa;
+}
+
+/* ── Properties map ── */
+#properties-map {
+    width: 100%;
+    height: 420px;
+    border-radius: 8px;
+    margin: 1.5rem 0;
+}
+
+.map-label {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 2px 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text);
+    white-space: nowrap;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+}
+
+/* ── Lightbox ── */
+#lightbox-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.88);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+}
+
+#lightbox-overlay.active {
+    display: flex;
+}
+
+#lightbox-overlay img {
+    max-width: 92vw;
+    max-height: 92vh;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.5);
 }

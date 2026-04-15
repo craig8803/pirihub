@@ -27,12 +27,47 @@ document.addEventListener('DOMContentLoaded', function() {
         const dropdowns = navMenu.querySelectorAll('.dropdown > a');
         dropdowns.forEach(dropdown => {
             dropdown.addEventListener('click', function(e) {
-                e.preventDefault();
-                const parentDropdown = this.parentElement;
-                parentDropdown.classList.toggle('active');
+                // On mobile (menu toggle visible), prevent navigation and toggle dropdown instead
+                if (menuToggle && menuToggle.offsetParent !== null) {
+                    e.preventDefault();
+                    const parentDropdown = this.parentElement;
+                    parentDropdown.classList.toggle('active');
+                }
+                // On desktop, let the link navigate normally
             });
         });
     }
+
+    // Lightbox for gallery images
+    const overlay = document.createElement('div');
+    overlay.id = 'lightbox-overlay';
+    const lightboxImg = document.createElement('img');
+    overlay.appendChild(lightboxImg);
+    document.body.appendChild(overlay);
+
+    function openLightbox(src, alt) {
+        lightboxImg.src = src;
+        lightboxImg.alt = alt || '';
+        overlay.classList.add('active');
+    }
+
+    function closeLightbox() {
+        overlay.classList.remove('active');
+        lightboxImg.src = '';
+    }
+
+    overlay.addEventListener('click', closeLightbox);
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeLightbox();
+    });
+
+    document.querySelectorAll('.photo-gallery img, .photo-gallery--piri img, .photo-gallery--natural img').forEach(function(img) {
+        img.style.cursor = 'zoom-in';
+        img.addEventListener('click', function() {
+            openLightbox(this.src, this.alt);
+        });
+    });
 });
 
 // Configuration
