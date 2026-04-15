@@ -1348,8 +1348,29 @@ blockquote {
 }
 
 /* ── Comparison table ── */
+.comparison-table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.comparison-table-wrapper::after {
+    display: none;
+    content: '← scroll →';
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--text-light);
+    padding: 0.25rem 0;
+}
+
+@media (max-width: 768px) {
+    .comparison-table-wrapper::after {
+        display: block;
+    }
+}
+
 .comparison-table {
     width: 100%;
+    min-width: 500px;
     border-collapse: collapse;
     margin: 1.5rem 0;
     font-size: 0.9rem;
