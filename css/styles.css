@@ -68,6 +68,10 @@ header {
     display: block;
 }
 
+.mobile-logo {
+    display: none;
+}
+
 .nav-menu {
     flex: 1;
 }
@@ -346,10 +350,6 @@ footer {
     color: var(--sand);
     text-align: center;
     padding: 1rem;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    z-index: 2000;
 }
 
 #house-select {
@@ -877,8 +877,17 @@ footer {
     }
     
     header {
-        flex-direction: column;
-        align-items: stretch;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .mobile-logo {
+        display: block;
+    }
+
+    .mobile-logo .logo {
+        height: 50px;
     }
     
     .nav-menu {
@@ -1363,6 +1372,8 @@ blockquote {
     height: 420px;
     border-radius: 8px;
     margin: 1.5rem 0;
+    position: relative;
+    z-index: 0;
 }
 
 .map-label {
