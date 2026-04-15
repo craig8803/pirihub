@@ -23,20 +23,14 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
         
-        // Handle dropdown menus
-        const dropdowns = navMenu.querySelectorAll('.dropdown > a');
-        dropdowns.forEach(dropdown => {
-            dropdown.addEventListener('click', function(e) {
-                // On mobile (menu toggle visible), first tap opens dropdown, second tap navigates
-                if (menuToggle && menuToggle.offsetParent !== null) {
-                    const parentDropdown = this.parentElement;
-                    if (!parentDropdown.classList.contains('active')) {
-                        e.preventDefault();
-                        parentDropdown.classList.add('active');
-                    }
-                    // If already active, let the link navigate normally
-                }
-                // On desktop, let the link navigate normally
+        // Handle dropdown menus — chevron toggles submenu, link always navigates
+        const dropdownToggles = navMenu.querySelectorAll('.dropdown-toggle');
+        dropdownToggles.forEach(toggle => {
+            toggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                const parentDropdown = this.parentElement;
+                parentDropdown.classList.toggle('active');
             });
         });
     }

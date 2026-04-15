@@ -68,8 +68,15 @@ header {
     display: block;
 }
 
-.mobile-logo {
+.dropdown-toggle {
     display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    color: var(--text);
+    padding: 0 0.25rem;
+    line-height: 1;
 }
 
 .nav-menu {
@@ -884,6 +891,10 @@ footer {
 
     .menu-toggle {
         order: 2;
+    }
+
+    .dropdown-toggle {
+        display: inline;
     }
 
     .mobile-logo {
