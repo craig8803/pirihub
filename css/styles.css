@@ -844,7 +844,8 @@ footer {
 .explore-card.houses h3,
 .explore-card.coliving h3,
 .explore-card.pirenopolis h3,
-.explore-card.services h3 {
+.explore-card.services h3,
+.explore-card.faq h3 {
     color: var(--terracotta);
 }
 
