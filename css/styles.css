@@ -1347,7 +1347,7 @@ blockquote {
     border-radius: 4px;
 }
 
-/* Full-size gallery — shows images uncropped in original ratio */
+/* Full-size gallery – shows images uncropped in original ratio */
 .photo-gallery--natural {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
