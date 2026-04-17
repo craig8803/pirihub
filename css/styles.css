@@ -197,7 +197,9 @@ h1, h2, h3 {
 }
 
 .book-now-btn {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     background-color: var(--terracotta);
     color: #fff;
     padding: 0.4rem 0.8rem;
@@ -220,7 +222,9 @@ h1, h2, h3 {
 }
 
 .see-reviews-btn {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     background-color: var(--forest);
     color: #fff;
     padding: 0.4rem 0.8rem;
@@ -243,7 +247,9 @@ h1, h2, h3 {
 }
 
 .add-review-btn {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     background-color: transparent;
     color: var(--forest);
     border: 2px solid var(--forest);
