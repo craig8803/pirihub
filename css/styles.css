@@ -1381,6 +1381,7 @@ blockquote {
     -webkit-overflow-scrolling: touch;
 }
 
+.comparison-table-wrapper::before,
 .comparison-table-wrapper::after {
     display: none;
     content: '← scroll →';
@@ -1391,6 +1392,7 @@ blockquote {
 }
 
 @media (max-width: 768px) {
+    .comparison-table-wrapper::before,
     .comparison-table-wrapper::after {
         display: block;
     }
