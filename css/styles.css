@@ -1,11 +1,11 @@
 :root {
-    --sand:       #f7f3ed;
-    --parchment:  #ede8de;
-    --terracotta: #c1440e;
-    --forest:     #2d5a3d;
-    --text:       #2c2416;
-    --text-light: #6b5d4f;
-    --border:     #ddd6cc;
+    --sand:       #f5f5f5;
+    --parchment:  #eaeef4;
+    --terracotta: #e8457a;
+    --forest:     #1a6baa;
+    --text:       #1a2a3a;
+    --text-light: #5a6a7a;
+    --border:     #c8d4e0;
     --white:      #ffffff;
 }
 
@@ -210,7 +210,7 @@ h1, h2, h3 {
 }
 
 .book-now-btn:hover {
-    background-color: #a53a0c;
+    background-color: #c4306a;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
@@ -233,7 +233,7 @@ h1, h2, h3 {
 }
 
 .see-reviews-btn:hover {
-    background-color: #244a32;
+    background-color: #155490;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
@@ -269,7 +269,7 @@ h1, h2, h3 {
 
 .top-link {
     display: inline-block;
-    background-color: #34495e;
+    background-color: #1a6baa;
     color: #fff;
     padding: 0.4rem 0.8rem;
     border-radius: 6px;
@@ -281,7 +281,7 @@ h1, h2, h3 {
 }
 
 .top-link:hover {
-    background-color: #2c3e50;
+    background-color: #155490;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
