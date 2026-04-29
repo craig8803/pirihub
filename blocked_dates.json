@@ -42,7 +42,7 @@
   ],
   "mini-casa": [
     {
-      "start": "2026-05-01",
+      "start": "2026-04-30",
       "end": "2026-05-03",
       "title": "Booking.com: CLOSED - Not available"
     },
@@ -50,6 +50,11 @@
       "start": "2026-05-09",
       "end": "2026-05-11",
       "title": "Airbnb: Reserved"
+    },
+    {
+      "start": "2026-05-15",
+      "end": "2026-05-17",
+      "title": "Booking.com: CLOSED - Not available"
     },
     {
       "start": "2026-06-04",
