@@ -6,11 +6,6 @@
       "title": "Airbnb: Reserved"
     },
     {
-      "start": "2026-05-10",
-      "end": "2026-05-11",
-      "title": "Airbnb: Airbnb (Not available)"
-    },
-    {
       "start": "2026-06-04",
       "end": "2026-06-07",
       "title": "Booking.com: CLOSED - Not available"
@@ -26,11 +21,6 @@
       "start": "2026-05-09",
       "end": "2026-05-10",
       "title": "Airbnb: Reserved"
-    },
-    {
-      "start": "2026-05-10",
-      "end": "2026-05-11",
-      "title": "Airbnb: Airbnb (Not available)"
     },
     {
       "start": "2026-09-01",
@@ -57,7 +47,7 @@
       "title": "Airbnb: Reserved"
     },
     {
-      "start": "2027-02-04",
+      "start": "2027-02-05",
       "end": "2027-05-12",
       "title": "Airbnb: Airbnb (Not available)"
     }
