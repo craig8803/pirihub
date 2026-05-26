@@ -50,7 +50,17 @@
       "title": "Airbnb: Airbnb (Not available)"
     },
     {
-      "start": "2026-07-01",
+      "start": "2026-05-29",
+      "end": "2026-05-30",
+      "title": "Airbnb: Airbnb (Not available)"
+    },
+    {
+      "start": "2026-05-30",
+      "end": "2026-05-31",
+      "title": "Airbnb: Reserved"
+    },
+    {
+      "start": "2026-09-01",
       "end": "2027-05-27",
       "title": "Airbnb: Airbnb (Not available)"
     }
