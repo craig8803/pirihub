@@ -1,18 +1,13 @@
 {
   "casa-matutina": [
     {
-      "start": "2026-05-29",
-      "end": "2026-05-31",
-      "title": "Booking.com: CLOSED - Not available"
-    },
-    {
       "start": "2026-06-04",
       "end": "2026-06-07",
       "title": "Booking.com: CLOSED - Not available"
     },
     {
       "start": "2026-11-27",
-      "end": "2027-06-01",
+      "end": "2027-06-02",
       "title": "Airbnb: Airbnb (Not available)"
     }
   ],
@@ -34,7 +29,7 @@
     },
     {
       "start": "2026-11-27",
-      "end": "2027-06-01",
+      "end": "2027-06-02",
       "title": "Airbnb: Airbnb (Not available)"
     },
     {
@@ -45,28 +40,23 @@
   ],
   "casa-sol": [
     {
-      "start": "2026-05-29",
-      "end": "2026-05-30",
-      "title": "Airbnb: Airbnb (Not available)"
-    },
-    {
       "start": "2026-05-30",
       "end": "2026-05-31",
       "title": "Airbnb: Reserved"
     },
     {
       "start": "2026-05-31",
-      "end": "2026-06-07",
+      "end": "2026-06-01",
       "title": "Airbnb: Airbnb (Not available)"
     },
     {
-      "start": "2026-06-11",
-      "end": "2026-07-01",
+      "start": "2026-06-04",
+      "end": "2026-06-11",
       "title": "Airbnb: Airbnb (Not available)"
     },
     {
       "start": "2026-09-01",
-      "end": "2027-06-01",
+      "end": "2027-06-02",
       "title": "Airbnb: Airbnb (Not available)"
     }
   ],
@@ -83,7 +73,7 @@
     },
     {
       "start": "2027-02-25",
-      "end": "2027-06-01",
+      "end": "2027-06-02",
       "title": "Airbnb: Airbnb (Not available)"
     }
   ]
