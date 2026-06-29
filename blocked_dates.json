@@ -7,26 +7,21 @@
     },
     {
       "start": "2026-12-25",
-      "end": "2027-06-29",
+      "end": "2027-06-30",
       "title": "Airbnb: Airbnb (Not available)"
     }
   ],
   "atelier": [
     {
-      "start": "2026-06-25",
-      "end": "2026-06-28",
-      "title": "Booking.com: CLOSED - Not available"
-    },
-    {
       "start": "2026-12-25",
-      "end": "2027-06-29",
+      "end": "2027-06-30",
       "title": "Airbnb: Airbnb (Not available)"
     }
   ],
   "casa-sol": [
     {
       "start": "2027-06-28",
-      "end": "2027-06-29",
+      "end": "2027-06-30",
       "title": "Airbnb: Airbnb (Not available)"
     }
   ],
@@ -38,7 +33,7 @@
     },
     {
       "start": "2027-03-25",
-      "end": "2027-06-29",
+      "end": "2027-06-30",
       "title": "Airbnb: Airbnb (Not available)"
     }
   ]
