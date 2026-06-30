@@ -12,33 +12,28 @@
     },
     {
       "start": "2026-12-26",
-      "end": "2027-06-30",
+      "end": "2027-07-01",
       "title": "Airbnb: Airbnb (Not available)"
     }
   ],
   "atelier": [
     {
       "start": "2026-12-26",
-      "end": "2027-06-30",
+      "end": "2027-07-01",
       "title": "Airbnb: Airbnb (Not available)"
     }
   ],
   "casa-sol": [
     {
       "start": "2027-06-29",
-      "end": "2027-06-30",
+      "end": "2027-07-01",
       "title": "Airbnb: Airbnb (Not available)"
     }
   ],
   "mini-casa": [
     {
-      "start": "2026-06-26",
-      "end": "2026-06-28",
-      "title": "Airbnb: Reserved"
-    },
-    {
       "start": "2027-03-26",
-      "end": "2027-06-30",
+      "end": "2027-07-01",
       "title": "Airbnb: Airbnb (Not available)"
     }
   ]
