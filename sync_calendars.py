@@ -5,10 +5,14 @@ Reads iCal feeds and generates JSON with blocked date ranges.
 """
 
 import os
+import sys
 import json
 from datetime import datetime
 from icalendar import Calendar
 import requests
+
+# Feeds that failed to fetch this run, as "house_id / source_name: error" strings.
+sync_errors = []
 
 # House configurations - Airbnb
 AIRBNB_HOUSES = {
@@ -26,11 +30,11 @@ BOOKING_HOUSES = {
     'mini-casa': os.getenv('BOOKING_MINI_CASA'),
 }
 
-def fetch_calendar(ical_url, source_name):
+def fetch_calendar(ical_url, source_name, house_id):
     """Fetch and parse iCal feed."""
     if not ical_url:
         return []
-    
+
     try:
         response = requests.get(ical_url, timeout=10)
         response.raise_for_status()
@@ -40,6 +44,8 @@ def fetch_calendar(ical_url, source_name):
         return events
     except Exception as e:
         print(f"  Error fetching {source_name} calendar: {e}")
+        print(f"::error title=Calendar sync failed ({house_id} / {source_name})::{e}")
+        sync_errors.append(f"{house_id} / {source_name}: {e}")
         return []
 
 def extract_blocked_dates(events, source_name):
@@ -89,12 +95,12 @@ def sync_all_calendars():
         
         # Fetch from Airbnb
         airbnb_url = AIRBNB_HOUSES.get(house_id)
-        airbnb_events = fetch_calendar(airbnb_url, 'Airbnb') if airbnb_url else []
+        airbnb_events = fetch_calendar(airbnb_url, 'Airbnb', house_id) if airbnb_url else []
         airbnb_blocked = extract_blocked_dates(airbnb_events, 'Airbnb')
-        
+
         # Fetch from Booking.com
         booking_url = BOOKING_HOUSES.get(house_id)
-        booking_events = fetch_calendar(booking_url, 'Booking.com') if booking_url else []
+        booking_events = fetch_calendar(booking_url, 'Booking.com', house_id) if booking_url else []
         booking_blocked = extract_blocked_dates(booking_events, 'Booking.com')
         
         # Merge all blocked dates
@@ -112,3 +118,8 @@ def sync_all_calendars():
 
 if __name__ == '__main__':
     sync_all_calendars()
+    if sync_errors:
+        print(f"\n{len(sync_errors)} feed(s) failed to sync:")
+        for err in sync_errors:
+            print(f"  - {err}")
+        sys.exit(1)
