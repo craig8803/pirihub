@@ -2,7 +2,7 @@
   "casa-matutina": [
     {
       "start": "2027-04-12",
-      "end": "2027-07-17",
+      "end": "2027-07-18",
       "title": "Airbnb: Airbnb (Not available)"
     }
   ],
@@ -13,13 +13,18 @@
       "title": "Booking.com: CLOSED - Not available"
     },
     {
+      "start": "2026-07-19",
+      "end": "2026-07-21",
+      "title": "Booking.com: CLOSED - Not available"
+    },
+    {
       "start": "2026-07-25",
       "end": "2026-07-26",
       "title": "Booking.com: CLOSED - Not available"
     },
     {
       "start": "2027-04-12",
-      "end": "2027-07-17",
+      "end": "2027-07-18",
       "title": "Airbnb: Airbnb (Not available)"
     }
   ],
@@ -36,7 +41,7 @@
     },
     {
       "start": "2027-07-16",
-      "end": "2027-07-17",
+      "end": "2027-07-18",
       "title": "Airbnb: Airbnb (Not available)"
     }
   ],
@@ -48,7 +53,7 @@
     },
     {
       "start": "2027-04-12",
-      "end": "2027-07-17",
+      "end": "2027-07-18",
       "title": "Airbnb: Airbnb (Not available)"
     }
   ]
