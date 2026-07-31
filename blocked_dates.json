@@ -47,6 +47,11 @@
   ],
   "mini-casa": [
     {
+      "start": "2026-07-31",
+      "end": "2026-08-01",
+      "title": "Airbnb: Reserved"
+    },
+    {
       "start": "2027-04-27",
       "end": "2027-08-01",
       "title": "Airbnb: Airbnb (Not available)"
