@@ -1,12 +1,22 @@
 {
   "casa-matutina": [
     {
+      "start": "2026-08-01",
+      "end": "2026-08-02",
+      "title": "Airbnb: Reserved"
+    },
+    {
       "start": "2027-04-28",
-      "end": "2027-08-02",
+      "end": "2027-08-03",
       "title": "Airbnb: Airbnb (Not available)"
     }
   ],
   "atelier": [
+    {
+      "start": "2026-08-01",
+      "end": "2026-08-02",
+      "title": "Airbnb: Reserved"
+    },
     {
       "start": "2026-08-13",
       "end": "2026-08-15",
@@ -24,7 +34,7 @@
     },
     {
       "start": "2027-04-28",
-      "end": "2027-08-02",
+      "end": "2027-08-03",
       "title": "Airbnb: Airbnb (Not available)"
     }
   ],
@@ -41,7 +51,7 @@
     },
     {
       "start": "2027-08-01",
-      "end": "2027-08-02",
+      "end": "2027-08-03",
       "title": "Airbnb: Airbnb (Not available)"
     }
   ],
@@ -52,8 +62,13 @@
       "title": "Airbnb: Reserved"
     },
     {
+      "start": "2026-08-01",
+      "end": "2026-08-02",
+      "title": "Airbnb: Airbnb (Not available)"
+    },
+    {
       "start": "2027-04-28",
-      "end": "2027-08-02",
+      "end": "2027-08-03",
       "title": "Airbnb: Airbnb (Not available)"
     }
   ]
