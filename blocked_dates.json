@@ -1,7 +1,7 @@
 {
   "casa-matutina": [
     {
-      "start": "2027-05-01",
+      "start": "2027-05-02",
       "end": "2027-08-06",
       "title": "Airbnb: Airbnb (Not available)"
     }
@@ -28,7 +28,7 @@
       "title": "Booking.com: CLOSED - Not available"
     },
     {
-      "start": "2027-05-01",
+      "start": "2027-05-02",
       "end": "2027-08-06",
       "title": "Airbnb: Airbnb (Not available)"
     }
@@ -40,14 +40,14 @@
       "title": "Airbnb: Airbnb (Not available)"
     },
     {
-      "start": "2027-08-04",
+      "start": "2027-08-05",
       "end": "2027-08-06",
       "title": "Airbnb: Airbnb (Not available)"
     }
   ],
   "mini-casa": [
     {
-      "start": "2027-05-01",
+      "start": "2027-05-02",
       "end": "2027-08-06",
       "title": "Airbnb: Airbnb (Not available)"
     }
