@@ -5,7 +5,6 @@ Reads iCal feeds and generates JSON with blocked date ranges.
 """
 
 import os
-import sys
 import json
 from datetime import datetime
 from icalendar import Calendar
@@ -122,4 +121,9 @@ if __name__ == '__main__':
         print(f"\n{len(sync_errors)} feed(s) failed to sync:")
         for err in sync_errors:
             print(f"  - {err}")
-        sys.exit(1)
+        # Don't fail the run over this: the other feeds still synced fine, and a
+        # hard failure here re-fails every 4-hour schedule run (and emails the
+        # owner each time) until someone fixes the broken feed. The ::error::
+        # annotations above still show up in the run summary either way, so
+        # partial failures stay visible without spamming failure notifications.
+        print("\nContinuing with partial data — see ::error:: annotations above for what to fix.")
