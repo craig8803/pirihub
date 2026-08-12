@@ -27,7 +27,6 @@ jobs:
       
       - name: Sync Airbnb calendars
         id: sync
-        continue-on-error: true
         run: python sync_calendars.py
         env:
           AIRBNB_CASA_MATUTINA: ${{ secrets.AIRBNB_CASA_MATUTINA }}
@@ -50,10 +49,4 @@ jobs:
           git diff --quiet && git diff --staged --quiet || (git commit -m "Update blocked dates from Airbnb" && git push)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Fail job if any calendar feed didn't sync
-        if: steps.sync.outcome == 'failure'
-        run: |
-          echo "One or more calendar feeds failed to sync this run — see the ::error:: annotations above for which feed(s) broke."
-          exit 1
 
