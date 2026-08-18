@@ -7,7 +7,7 @@
     },
     {
       "start": "2027-05-14",
-      "end": "2027-08-18",
+      "end": "2027-08-19",
       "title": "Airbnb: Airbnb (Not available)"
     }
   ],
@@ -28,17 +28,17 @@
       "title": "Booking.com: CLOSED - Not available"
     },
     {
+      "start": "2026-09-06",
+      "end": "2026-09-07",
+      "title": "Booking.com: CLOSED - Not available"
+    },
+    {
       "start": "2027-05-14",
-      "end": "2027-08-18",
+      "end": "2027-08-19",
       "title": "Airbnb: Airbnb (Not available)"
     }
   ],
   "casa-sol": [
-    {
-      "start": "2026-08-15",
-      "end": "2026-08-16",
-      "title": "Airbnb: Reserved"
-    },
     {
       "start": "2026-08-16",
       "end": "2026-08-17",
@@ -46,16 +46,11 @@
     },
     {
       "start": "2027-08-17",
-      "end": "2027-08-18",
+      "end": "2027-08-19",
       "title": "Airbnb: Airbnb (Not available)"
     }
   ],
   "mini-casa": [
-    {
-      "start": "2026-08-14",
-      "end": "2026-08-16",
-      "title": "Airbnb: Reserved"
-    },
     {
       "start": "2026-08-16",
       "end": "2026-08-17",
@@ -83,7 +78,7 @@
     },
     {
       "start": "2027-05-14",
-      "end": "2027-08-18",
+      "end": "2027-08-19",
       "title": "Airbnb: Airbnb (Not available)"
     }
   ]
