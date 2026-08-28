@@ -1,12 +1,22 @@
 {
   "casa-matutina": [
     {
+      "start": "2026-08-27",
+      "end": "2026-08-28",
+      "title": "Airbnb: Airbnb (Not available)"
+    },
+    {
       "start": "2027-05-24",
-      "end": "2027-08-28",
+      "end": "2027-08-29",
       "title": "Airbnb: Airbnb (Not available)"
     }
   ],
   "atelier": [
+    {
+      "start": "2026-08-27",
+      "end": "2026-08-28",
+      "title": "Airbnb: Airbnb (Not available)"
+    },
     {
       "start": "2026-08-28",
       "end": "2026-08-30",
@@ -24,14 +34,14 @@
     },
     {
       "start": "2027-05-24",
-      "end": "2027-08-28",
+      "end": "2027-08-29",
       "title": "Airbnb: Airbnb (Not available)"
     }
   ],
   "casa-sol": [
     {
       "start": "2027-08-27",
-      "end": "2027-08-28",
+      "end": "2027-08-29",
       "title": "Airbnb: Airbnb (Not available)"
     }
   ],
@@ -48,7 +58,7 @@
     },
     {
       "start": "2027-05-24",
-      "end": "2027-08-28",
+      "end": "2027-08-29",
       "title": "Airbnb: Airbnb (Not available)"
     }
   ]
