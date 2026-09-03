@@ -6,7 +6,7 @@
       "title": "Airbnb: Airbnb (Not available)"
     },
     {
-      "start": "2027-05-30",
+      "start": "2027-05-31",
       "end": "2027-09-04",
       "title": "Airbnb: Airbnb (Not available)"
     }
@@ -33,7 +33,7 @@
       "title": "Booking.com: CLOSED - Not available"
     },
     {
-      "start": "2027-05-30",
+      "start": "2027-05-31",
       "end": "2027-09-04",
       "title": "Airbnb: Airbnb (Not available)"
     }
@@ -45,14 +45,14 @@
       "title": "Airbnb: Reserved"
     },
     {
-      "start": "2027-09-02",
+      "start": "2027-09-03",
       "end": "2027-09-04",
       "title": "Airbnb: Airbnb (Not available)"
     }
   ],
   "mini-casa": [
     {
-      "start": "2027-05-30",
+      "start": "2027-05-31",
       "end": "2027-09-04",
       "title": "Airbnb: Airbnb (Not available)"
     }
