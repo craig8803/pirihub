@@ -2,7 +2,7 @@
   "casa-matutina": [
     {
       "start": "2027-07-13",
-      "end": "2027-10-17",
+      "end": "2027-10-18",
       "title": "Airbnb: Airbnb (Not available)"
     }
   ],
@@ -19,7 +19,7 @@
     },
     {
       "start": "2027-07-13",
-      "end": "2027-10-17",
+      "end": "2027-10-18",
       "title": "Airbnb: Airbnb (Not available)"
     }
   ],
@@ -31,19 +31,14 @@
     },
     {
       "start": "2027-10-16",
-      "end": "2027-10-17",
+      "end": "2027-10-18",
       "title": "Airbnb: Airbnb (Not available)"
     }
   ],
   "mini-casa": [
     {
-      "start": "2026-10-16",
-      "end": "2026-10-17",
-      "title": "Airbnb: Airbnb (Not available)"
-    },
-    {
       "start": "2027-07-13",
-      "end": "2027-10-17",
+      "end": "2027-10-18",
       "title": "Airbnb: Airbnb (Not available)"
     }
   ]
